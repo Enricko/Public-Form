@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h4>Tambah Forum (Add New Forum)</h4>
+</div>
+
+<form id="addPostForm">
+  <div class="mb-3">
+    <label for="postTitle" class="form-label">Post Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="postTitle"
+      placeholder="Enter the title"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="postContent" class="form-label">Post Content</label>
+    <textarea
+      class="form-control"
+      id="postContent"
+      rows="5"
+      placeholder="Write your post content..."
+      required
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-danger w-100">Submit Post</button>
+</form>
+
+<!-- Success message (hidden initially) -->
+<div id="successMessage" class="alert alert-success mt-3" style="display: none">
+  Your post has been successfully added!
+</div>
+
+<script>
+  document
+    .getElementById("addPostForm")
+    .addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent form submission
+
+      // Simple validation for non-empty fields
+      const title = document.getElementById("postTitle").value;
+      const content = document.getElementById("postContent").value;
+
+      if (title && content) {
+        // Simulate form submission (you can replace this with real API calls)
+        setTimeout(() => {
+          document.getElementById("successMessage").style.display = "block";
+          // Optionally, reset the form after successful submission
+          document.getElementById("addPostForm").reset();
+        }, 1000);
+      }
+    });
+</script>

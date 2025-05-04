@@ -1,0 +1,41 @@
+<div class="page-header">
+    <h4>Settings</h4>
+  </div>
+  
+  <form id="settingsForm">
+    <div class="mb-3">
+      <label for="emailNotifications" class="form-label">Email Notifications</label>
+      <select class="form-select" id="emailNotifications" aria-label="Select notification preferences">
+        <option value="1" selected>Enable</option>
+        <option value="0">Disable</option>
+      </select>
+    </div>
+    
+    <div class="mb-3">
+      <label for="changePassword" class="form-label">Change Password</label>
+      <input type="password" class="form-control" id="changePassword" placeholder="New Password" required />
+    </div>
+    
+    <button type="submit" class="btn btn-danger w-100">Save Settings</button>
+  </form>
+  
+  <!-- Success message (hidden initially) -->
+  <div id="settingsSuccessMessage" class="alert alert-success mt-3" style="display:none;">
+    Your settings have been successfully updated!
+  </div>
+  
+  <script>
+    document.getElementById('settingsForm').addEventListener('submit', function(e) {
+      e.preventDefault();  // Prevent form submission
+  
+      // Simple validation for password field
+      const password = document.getElementById('changePassword').value;
+      if (password) {
+        // Simulate saving settings (you can replace this with a real API call)
+        setTimeout(() => {
+          document.getElementById('settingsSuccessMessage').style.display = 'block';
+        }, 1000);
+      }
+    });
+  </script>
+  

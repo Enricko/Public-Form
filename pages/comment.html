@@ -1,0 +1,39 @@
+<div class="page-header">
+    <h4>Comments</h4>
+  </div>
+  
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Sample Post Title</h5>
+      <p class="card-text">This is a detailed post. Comments will be displayed below.</p>
+    </div>
+  </div>
+  
+  <h5>Comments:</h5>
+  <div id="commentsList">
+    <!-- Comments will be dynamically added here -->
+  </div>
+  
+  <div class="mb-3">
+    <textarea class="form-control" id="commentInput" rows="3" placeholder="Add a comment..."></textarea>
+  </div>
+  <button class="btn btn-outline-primary" id="submitComment">Submit Comment</button>
+  
+  <script>
+    document.getElementById('submitComment').addEventListener('click', function() {
+      const commentText = document.getElementById('commentInput').value;
+  
+      if (commentText) {
+        const commentDiv = document.createElement('div');
+        commentDiv.classList.add('alert', 'alert-info');
+        commentDiv.innerText = commentText;
+  
+        // Append comment to the list
+        document.getElementById('commentsList').appendChild(commentDiv);
+  
+        // Reset input field
+        document.getElementById('commentInput').value = '';
+      }
+    });
+  </script>
+  

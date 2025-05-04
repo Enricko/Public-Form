@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h4>User Profile</h4>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex align-items-center">
+      <img
+        src="https://via.placeholder.com/50"
+        alt="User Image"
+        class="rounded-circle me-3"
+      />
+      <h5 class="card-title">
+        Username: <span id="usernameDisplay">user123</span>
+      </h5>
+    </div>
+    <p><strong>Email:</strong> user123@example.com</p>
+    <button class="btn btn-outline-primary" onclick="editProfile()">
+      Edit Profile
+    </button>
+  </div>
+</div>
+
+<script>
+  function editProfile() {
+    // Simulate an edit profile form (you can replace this with real editing functionality)
+    const newUsername = prompt(
+      "Enter new username:",
+      document.getElementById("usernameDisplay").innerText
+    );
+    if (newUsername) {
+      document.getElementById("usernameDisplay").innerText = newUsername;
+      alert("Profile updated!");
+    }
+  }
+</script>
