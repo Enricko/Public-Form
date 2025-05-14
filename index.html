@@ -1,4 +1,3 @@
-<!-- FILE : index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,10 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/content.css" />
+
   </head>
   <body>
 
-    <!-- Navbar -->
+    <!-- Fixed Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">PublicForum</a>
@@ -25,18 +25,16 @@
       </div>
     </nav>
 
-    <!-- Main Layout -->
-    <div class="container-fluid mt-4">
+    <!-- Main Layout with adjusted margins -->
+    <div class="container-fluid mt-3">
       <div class="row">
         <!-- Left Sidebar -->
         <div class="col-md-2">
           <div class="sidebar">
-            <h5>Navigation</h5>
             <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="loadPage('home')">🏠 Home</a></li>
               <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="loadPage('tambah')">➕ Tambah Forum</a></li>
               <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="loadPage('profile')">👤 Profile</a></li>
-              <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="loadPage('history')">📜 History</a></li>
               <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="loadPage('search')">🔍 Search</a></li>
               <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="loadPage('settings')">⚙️ Settings</a></li>
               <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="loadPage('about')">ℹ️ About Us</a></li>
@@ -44,16 +42,57 @@
           </div>
         </div>
 
-        <!-- Main Content -->
+        <!-- Main Content with more padding -->
         <div class="col-md-7" id="page-content">
           <!-- Page content will be dynamically loaded here -->
+        </div>
+
+        <!-- Right sidebar column with sticky behavior -->
+        <div class="col-md-2">
+          <!-- Wrap trending and suggested users in a sticky container -->
+          <div class="right-sidebar">
+            <div class="trending">
+              <h3>Sedang Hangat 🔥</h3>
+              <div class="trending-item"><strong>#AIRevolusi</strong><small>23.000 postingan</small></div>
+              <div class="trending-item"><strong>#Robotika2025</strong><small>11.500 postingan</small></div>
+              <div class="trending-item"><strong>#DesainWeb</strong><small>9.830 postingan</small></div>
+              <div class="trending-item"><strong>#StartupTech</strong><small>8.210 postingan</small></div>
+              <div class="trending-item"><strong>#XThreadsDesign</strong><small>7.980 postingan</small></div>
+              <div class="trending-item"><strong>#UX2025</strong><small>6.100 postingan</small></div>
+              <div class="trending-item"><strong>#NgodingSantai</strong><small>5.000 postingan</small></div>
+              <div class="trending-item"><strong>#NextUITrend</strong><small>4.780 postingan</small></div>
+              <div class="trending-item"><strong>#GPTWebDev</strong><small>3.400 postingan</small></div>
+            </div>
+
+            <div class="suggested-users">
+              <h3>Rekomendasi Akun</h3>
+              <div class="user">
+                <div class="user-name">@kodepintar</div>
+                <button class="follow-btn">Ikuti</button>
+              </div>
+              <div class="user">
+                <div class="user-name">@desainin</div>
+                <button class="follow-btn">Ikuti</button>
+              </div>
+              <div class="user">
+                <div class="user-name">@techbabe</div>
+                <button class="follow-btn">Ikuti</button>
+              </div>
+              <div class="user">
+                <div class="user-name">@aibot</div>
+                <button class="follow-btn">Ikuti</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Fixed Footer -->
     <footer>
       <div class="container-fluid text-dark text-center py-3">
-        <p>&copy; 2025 PublicForum. All rights reserved.</p>
+        <p class="mb-0">&copy; 2025 PublicForum. All rights reserved.</p>
+      </div>
     </footer>
 
     <script src="assets/js/scripts.js"></script>

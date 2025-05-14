@@ -1,4 +1,4 @@
-// Updated scripts.js with better script execution for dynamic content
+// Fixed scripts.js with reliable page persistence (even with Ctrl+R)
 
 // Main script for the Public Forum
 function loadPage(page, id) {
@@ -8,6 +8,10 @@ function loadPage(page, id) {
   if (id) {
     url += `?id=${id}`;
   }
+  
+  // Immediately save current page to sessionStorage (before fetch)
+  // This ensures it's saved even during quick refreshes
+  saveCurrentPageState(page, id);
   
   fetch(url)
     .then(response => {
@@ -52,6 +56,9 @@ function loadPage(page, id) {
         }
       });
       
+      // Update active state in sidebar
+      updateActiveSidebarItem(page);
+      
       // If the page is search and there's a query parameter in the URL
       if (page === 'search') {
         const urlParams = new URLSearchParams(window.location.search);
@@ -67,8 +74,8 @@ function loadPage(page, id) {
       }
       
       // Update URL to reflect the current page
-      const newUrl = window.location.pathname + '?page=' + encodeURIComponent(page);
-      window.history.pushState({ path: newUrl, page: page }, '', newUrl);
+      const newUrl = window.location.pathname + '?page=' + encodeURIComponent(page) + (id ? '&id=' + encodeURIComponent(id) : '');
+      window.history.pushState({ path: newUrl, page: page, id: id }, '', newUrl);
       
       console.log(`Page ${page} loaded successfully`);
     })
@@ -82,11 +89,68 @@ function loadPage(page, id) {
     });
 }
 
+// Helper function to save current page state
+// Called early to ensure state is saved even during quick refreshes
+function saveCurrentPageState(page, id) {
+  // Use localStorage instead of sessionStorage for better persistence
+  localStorage.setItem('currentPage', page);
+  if (id) {
+    localStorage.setItem('currentId', id);
+  } else {
+    localStorage.removeItem('currentId');
+  }
+  
+  // Also update the URL query parameter for extra reliability
+  // This creates multiple ways for the state to persist
+  const params = new URLSearchParams(window.location.search);
+  params.set('page', page);
+  if (id) {
+    params.set('id', id);
+  } else {
+    params.delete('id');
+  }
+  
+  // Update URL without triggering page reload
+  const newUrl = window.location.pathname + '?' + params.toString();
+  window.history.replaceState({ path: newUrl, page: page, id: id }, '', newUrl);
+}
+
+// Helper function to update active state in sidebar
+function updateActiveSidebarItem(currentPage) {
+  // First, remove active class from all nav links
+  document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+    link.classList.remove('active');
+  });
+  
+  // Add active class to the current page link
+  const activeLink = document.querySelector(`.sidebar .nav-link[onclick*="loadPage('${currentPage}')"]`);
+  if (activeLink) {
+    activeLink.classList.add('active');
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM loaded, initializing application...");
   
-  // Load the home page by default
-  loadPage("home");
+  // Check if we need to restore a page from the previous session
+  const urlParams = new URLSearchParams(window.location.search);
+  const pageParam = urlParams.get('page');
+  const idParam = urlParams.get('id');
+  
+  // First priority: URL parameters
+  if (pageParam) {
+    loadPage(pageParam, idParam || null);
+  } 
+  // Second priority: localStorage (for refresh persistence)
+  else if (localStorage.getItem('currentPage')) {
+    const storedPage = localStorage.getItem('currentPage');
+    const storedId = localStorage.getItem('currentId') || null;
+    loadPage(storedPage, storedId);
+  } 
+  // Default fallback: home page
+  else {
+    loadPage("home");
+  }
   
   // Set up the navbar search form
   const navbarSearchForm = document.getElementById('navbar-search-form');
@@ -96,12 +160,15 @@ document.addEventListener("DOMContentLoaded", function () {
       const searchInput = document.getElementById('navbar-search-input').value.trim();
       
       if (searchInput) {
-        // Load the search page with the query parameter
+        // Save search query to localStorage for persistence
+        localStorage.setItem('lastSearchQuery', searchInput);
+        
+        // Load the search page
         loadPage('search');
         
         // Update URL with search query
-        const newUrl = window.location.pathname + '?q=' + encodeURIComponent(searchInput);
-        window.history.pushState({ path: newUrl }, '', newUrl);
+        const newUrl = window.location.pathname + '?page=search&q=' + encodeURIComponent(searchInput);
+        window.history.pushState({ path: newUrl, page: 'search' }, '', newUrl);
         
         // Wait a bit for the search page to load, then set the input value and perform search
         setTimeout(function() {
@@ -121,12 +188,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Handle browser back/forward buttons
   window.onpopstate = function(event) {
     if (event.state && event.state.page) {
-      loadPage(event.state.page);
+      loadPage(event.state.page, event.state.id || null);
     } else {
       // If we don't have state, check the URL
       const urlParams = new URLSearchParams(window.location.search);
       const page = urlParams.get('page') || 'home';
-      loadPage(page);
+      const id = urlParams.get('id') || null;
+      loadPage(page, id);
     }
   };
   
@@ -140,7 +208,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const pageName = onclickAttr.match(/loadPage\(['"]([^'"]+)['"]/);
         if (pageName && pageName[1]) {
           e.preventDefault();
-          loadPage(pageName[1]);
+          
+          // Get ID parameter if present
+          const idMatch = onclickAttr.match(/loadPage\(['"][^'"]+['"],\s*['"]([^'"]+)['"]/);
+          const id = idMatch ? idMatch[1] : null;
+          
+          loadPage(pageName[1], id);
         }
       }
     });
@@ -156,4 +229,4 @@ window.performSearch = function(query) {
 };
 
 // Log that scripts.js has loaded
-console.log("Main scripts.js loaded successfully");
+console.log("Fixed scripts.js loaded successfully with improved page persistence"); 
