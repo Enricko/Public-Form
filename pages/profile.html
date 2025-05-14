@@ -1,36 +1,494 @@
-<div class="page-header">
-  <h4>User Profile</h4>
-</div>
 
-<div class="card">
-  <div class="card-body">
-    <div class="d-flex align-items-center">
-      <img
-        src="https://via.placeholder.com/50"
-        alt="User Image"
-        class="rounded-circle me-3"
-      />
-      <h5 class="card-title">
-        Username: <span id="usernameDisplay">user123</span>
-      </h5>
-    </div>
-    <p><strong>Email:</strong> user123@example.com</p>
-    <button class="btn btn-outline-primary" onclick="editProfile()">
-      Edit Profile
-    </button>
-  </div>
-</div>
-
-<script>
-  function editProfile() {
-    // Simulate an edit profile form (you can replace this with real editing functionality)
-    const newUsername = prompt(
-      "Enter new username:",
-      document.getElementById("usernameDisplay").innerText
-    );
-    if (newUsername) {
-      document.getElementById("usernameDisplay").innerText = newUsername;
-      alert("Profile updated!");
+  <style>
+    :root {
+      --bg-dark: #1a1a1b;
+      --bg-light: #272729;
+      --text-light: #d7dadc;
+      --text-muted: #818384;
+      --accent: #ff4500;
+      --card-bg: #1c1c1e;
+      --border-color: #343536;
+      --button-bg: #d7dadc;
+      --button-text: #1a1a1b;
+      --button-hover: #ffffff;
     }
-  }
-</script>
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    i {
+      font-size: 20px !important;
+    }
+
+    .notification-area {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 350px;
+      z-index: 9999;
+    }
+
+    .main-content {
+      flex: 3;
+    }
+
+    .sidebar {
+      flex: 1;
+      background-color: var(--bg-light);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .profile-banner {
+      height: 94px;
+      background-color: var(--accent);
+      position: relative;
+    }
+
+    .profile-avatar {
+      position: relative;
+      margin-top: -18px;
+      padding: 0 16px;
+    }
+
+    .profile-avatar-container {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--bg-light);
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-info {
+      padding: 12px 16px ;
+    }
+
+    .profile-info h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .profile-job {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin: 4px 0;
+    }
+
+    .profile-joined {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .edit-profile-btn {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 12px;
+      transition: background-color 0.2s;
+    }
+
+    .edit-profile-btn:hover {
+      background-color: var(--button-hover);
+    }
+
+    .profile-stats {
+      padding: 6px 16px 12px 16px;
+    }
+
+    .stats-title {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 12px;
+      margin-bottom: 8px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .tab {
+      padding: 10px;
+      color: var(--text-light);
+      cursor: pointer;
+    }
+
+    .tab.active {
+      border-bottom: 2px solid var(--accent);
+      font-weight: bold;
+    }
+
+    .post-card {
+      background-color: var(--card-bg);
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+    }
+
+    .post-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .post-card:hover {
+      background-color: #2a2a2c;
+    }
+
+    .edit-profile-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      padding: 32px;
+      border-radius: 8px;
+      width: 520px;
+      max-width: 95%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .modal-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #e0e0e0;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 8px;
+      margin: -8px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-light);
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    textarea.form-input {
+      resize: none;
+      min-height: 120px;
+    }
+
+    .save-btn {
+      background-color: #ff4500;
+      color: white;
+      border: none;
+      border-radius: 24px;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 24px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: var(--text-muted);
+      background-color: var(--bg-light);
+      margin-top: 50px;
+    }
+  </style>
+
+  <div class="notification-area" id="notificationArea">
+    <!-- Bootstrap alerts will appear here -->
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="tabs">
+        <div class="tab active" data-target="overview">Overview</div>
+        <div class="tab" data-target="posts">Posts</div>
+        <div class="tab" data-target="comments">Comments</div>
+        <div class="tab" data-target="likes">Likes</div>
+        <div class="tab" data-target="saved">Saved</div>
+      </div>
+
+      <div id="overview" class="tab-section">
+        <div class="post-card">
+          <strong>Posted:</strong> May 4, 2025 <br>
+          <a href="#">India-Pakistan Ceasefire Holds: Several sources highlight that the ceasefire agreed upon on May 10th is currently holding, bringing a period of relative calm after days of intense military confrontation.</a>
+        </div>
+      </div>
+
+      <div id="posts" class="tab-section">
+        <div class="post-card">
+          <strong>My First Post:</strong> <br>
+          <a href="#">40k Ace i did</a>
+        </div>
+      </div>
+
+      <div id="comments" class="tab-section">
+        <div class="post-card">
+          <strong>Commented on:</strong> <br>
+          <a href="#">Such hilarity of a jest this are! The author really is great at making fa... </a>
+        </div>
+      </div>
+
+      <div id="likes" class="tab-section">
+        <div class="post-card">
+          <strong>Liked Post:</strong> <br>
+          <a href="#">Cute cats habits!</a>
+        </div>
+      </div>
+
+      <div id="saved" class="tab-section">
+        <div class="post-card">
+          <strong>Saved Post:</strong> <br>
+          <a href="#">30 Black guys dancing around the moonlight in unison</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="profile-banner"></div>
+      <div class="profile-avatar">
+        <div class="profile-avatar-container">
+          <img src="Steve.png" alt="Avatar" id="profileAvatar">
+        </div>
+      </div>
+      <div class="profile-info">
+        <h2>Crocodilo</h2>
+        <div class="profile-job">CTO @ PublicForum</div>
+        <div class="profile-joined">Account created May 2025</div>
+        <button class="edit-profile-btn" id="editProfileBtn">Edit Profile</button>
+        <div style="width: 100%; border-top: 2px solid var(--border-color); margin: 16px 0 0 0;"></div>
+      </div>
+      
+      <div class="profile-stats" style="padding-top: 6px;">
+        
+        <div class="stats-title">COMMUNITY STATISTICS</div>
+        <div>Posts: 127</div>
+        <div>Comments: 943</div>
+        <div>Followers: 316</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div class="edit-profile-modal" id="editProfileModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Edit Profile</div>
+        <button class="close-modal" id="closeModal">&times;</button>
+      </div>
+      <form id="editProfileForm">
+        <div class="form-group text-center">
+          <label class="form-label d-block mb-3" style="font-weight: 500; color: #ffffff;">Profile Picture</label>
+          <div style="margin: 0 auto; position: relative; width: 120px; height: 120px;">
+            <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 3px solid #ffffff;">
+              <img src="/api/placeholder/120/120" alt="Profile Picture" id="previewAvatar" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="position: absolute; bottom: 5px; right: 5px; background: #ff4500; border-radius: 50%; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; border: 2px solid #000000;">
+              <i class="fa fa-camera" style="color: white; font-size: 16px !important;"></i>
+            </div>
+            <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="displayName">Display Name</label>
+          <input type="text" id="displayName" class="form-input" value="Crocodilo">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="bioMe">Bio</label>
+          <textarea id="bioMe" class="form-input" rows="4">CTO @ PublicForum</textarea>
+        </div>
+               <button type="submit" class="save-btn">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>&𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙 𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙 𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙 𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙 𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙 𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.tab-section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.style.display = 'none');
+
+        tab.classList.add('active');
+        const target = tab.getAttribute('data-target');
+        document.getElementById(target).style.display = 'block';
+      });
+    });
+
+    document.querySelectorAll('.tab-section').forEach((section, i) => {
+      section.style.display = i === 0 ? 'block' : 'none';
+    });
+
+    // Edit Profile Modal
+    const editProfileBtn = document.getElementById('editProfileBtn');
+    const editProfileModal = document.getElementById('editProfileModal');
+    const closeModal = document.getElementById('closeModal');
+    const editProfileForm = document.getElementById('editProfileForm');
+    const notificationArea = document.getElementById('notificationArea');
+
+    editProfileBtn.addEventListener('click', () => {
+      editProfileModal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => {
+      editProfileModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === editProfileModal) {
+        editProfileModal.style.display = 'none';
+      }
+    });
+
+    // Function to show bootstrap alert notification
+    function showNotification(type) {
+      // Clear previous notifications
+      notificationArea.innerHTML = '';
+      
+      // Alert types: primary, secondary, success, danger, warning, info, light, dark
+      const alertType = type || 'success';
+      const iconClass = alertType === 'success' ? 'fa-check-circle' : 
+                       (alertType === 'danger' || alertType === 'warning') ? 'fa-warning' : 'fa-info-circle';
+      
+      const alertHTML = `
+        <div class="alert alert-${alertType} fade show alert-dismissible" role="alert">
+          <strong><i class="fa ${iconClass}" aria-hidden="true"></i></strong> 
+          ${alertType === 'success' ? 'Profile updated successfully!' : `Your profile has been updated with ${alertType} level changes.`}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      `;
+      
+      notificationArea.innerHTML = alertHTML;
+      
+      // Auto dismiss after 5 seconds
+      setTimeout(() => {
+        $('.alert').alert('close');
+      }, 5000);
+    }
+
+    // Function to handle avatar upload preview
+    const avatarUpload = document.getElementById('avatarUpload');
+    const previewAvatar = document.getElementById('previewAvatar');
+    const cameraIcon = document.querySelector('.fa-camera').parentElement;
+    
+    // Click on camera icon triggers file input
+    cameraIcon.addEventListener('click', () => {
+      avatarUpload.click();
+    });
+    
+    // Preview the selected image
+    avatarUpload.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          previewAvatar.src = e.target.result;
+        };
+        
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+
+    editProfileForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const displayName = document.getElementById('displayName').value;
+      const bioMe = document.getElementById('bioMe').value;
+      
+      // Update profile info
+      document.querySelector('.profile-info h2').textContent = displayName;
+      document.querySelector('.profile-job').textContent = bioMe;
+      
+      // Update avatar if changed
+      if (previewAvatar.src !== '/api/placeholder/120/120') {
+        document.getElementById('profileAvatar').src = previewAvatar.src;
+      }
+      
+      // Close modal
+      editProfileModal.style.display = 'none';
+      
+      // Show success notification
+      showNotification('success');
+    });
+  </script>
