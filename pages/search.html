@@ -8,7 +8,7 @@
         <form id="searchForm" class="d-flex">
             <input type="text" id="searchInput" class="form-control me-2" value="javascript" placeholder="Search forums, users, or tags..." />
             <div class="ms-auto">
-            <button type="submit" class="btn btn-primary">Search</button>
+                <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>
     </div>
@@ -65,7 +65,7 @@
                                 <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     All Categories
                                 </button>
-                                <ul class="dropdown-menu w-100" aria-labelledby="categoryDropdown">
+                                <ul class="dropdown-menu w-100 dropdown-menu-fixed" aria-labelledby="categoryDropdown">
                                     <li><a class="dropdown-item active" href="javascript:void(0)">All Categories</a></li>
                                     <li><a class="dropdown-item" href="javascript:void(0)">Technology</a></li>
                                     <li><a class="dropdown-item" href="javascript:void(0)">Design</a></li>
@@ -81,7 +81,7 @@
                                 <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="locationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     All Locations
                                 </button>
-                                <ul class="dropdown-menu w-100" aria-labelledby="locationDropdown">
+                                <ul class="dropdown-menu w-100 dropdown-menu-fixed" aria-labelledby="locationDropdown">
                                     <li><a class="dropdown-item active" href="javascript:void(0)">All Locations</a></li>
                                     <li><a class="dropdown-item" href="javascript:void(0)">Global</a></li>
                                     <li><a class="dropdown-item" href="javascript:void(0)">Japan</a></li>
@@ -95,7 +95,7 @@
                                 <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     All Languages
                                 </button>
-                                <ul class="dropdown-menu w-100" aria-labelledby="languageDropdown">
+                                <ul class="dropdown-menu w-100 dropdown-menu-fixed" aria-labelledby="languageDropdown">
                                     <li><a class="dropdown-item active" href="javascript:void(0)">All Languages</a></li>
                                     <li><a class="dropdown-item" href="javascript:void(0)">English</a></li>
                                     <li><a class="dropdown-item" href="javascript:void(0)">Indonesian</a></li>                                    
@@ -174,7 +174,7 @@
                         <div class="text-muted small">1,245 posts • 5,678 followers</div>
                     </div>
                     <div class="ms-auto">
-                <button class="follow-btn">Ikuti</button>
+                        <button class="follow-btn">Ikuti</button>
                     </div>
                 </div>
             </div>
@@ -200,10 +200,7 @@
         <!-- Post Result -->
         <div class="social-post">
             <div class="post-header">
-                <img
-                    src="../assets/images/profile.png"
-                    alt="Profile"
-                    class="post-avatar" />
+                <img src="../assets/images/profile.png" alt="Profile" class="post-avatar" />
                 <div class="post-info">
                     <div class="post-author">
                         @Crocodilo <span class="post-date">· 3h ago</span>
@@ -235,48 +232,42 @@
             </div>
         </div>
 
-<!-- Single Image Post -->
-<div class="social-post">
-  <div class="post-header">
-    <img
-      src="../assets/images/profile.png"
-      alt="Profile"
-      class="post-avatar" />
-    <div class="post-info">
-      <div class="post-author">
-        @MochacinoUno <span class="post-date">· Yesterday</span>
-      </div>
-      <div class="post-meta">Web Developer @ PublicForum</div>
-    </div>
-  </div>
-  <div class="post-content">
-    I Love javascript more than you know my love #javascript</div>
-  <div class="post-media single-image">
-    <img
-      src="../assets/images/javascript.jpeg"
-      alt="Office setup"
-      class="post-image" />
-  </div>
-  <div class="post-actions">
-    <button class="action-btn like-btn">
-      <i class="far fa-heart"></i> <span>99</span>
-    </button>
-    <button class="action-btn comment-btn">
-      <i class="far fa-comment"></i> <span>77</span>
-    </button>
-    <button class="action-btn repost-btn">
-      <i class="fas fa-retweet"></i> <span>69</span>
-    </button>
-    <button class="action-btn share-btn">
-      <i class="far fa-share-square"></i>
-    </button>
-    <button class="action-btn save-btn">
-      <i class="far fa-bookmark"></i>
-    </button>
-  </div>
-</div>
+        <!-- Image Post -->
+        <div class="social-post">
+            <div class="post-header">
+                <img src="../assets/images/profile.png" alt="Profile" class="post-avatar" />
+                <div class="post-info">
+                    <div class="post-author">
+                        @MochacinoUno <span class="post-date">· Yesterday</span>
+                    </div>
+                    <div class="post-meta">Web Developer @ PublicForum</div>
+                </div>
+            </div>
+            <div class="post-content">
+                I Love javascript more than you know my love #javascript
+            </div>
+            <div class="post-media single-image">
+                <img src="../assets/images/javascript.jpeg" alt="JavaScript" class="post-image" />
+            </div>
+            <div class="post-actions">
+                <button class="action-btn like-btn">
+                    <i class="far fa-heart"></i> <span>99</span>
+                </button>
+                <button class="action-btn comment-btn">
+                    <i class="far fa-comment"></i> <span>77</span>
+                </button>
+                <button class="action-btn repost-btn">
+                    <i class="fas fa-retweet"></i> <span>69</span>
+                </button>
+                <button class="action-btn share-btn">
+                    <i class="far fa-share-square"></i>
+                </button>
+                <button class="action-btn save-btn">
+                    <i class="far fa-bookmark"></i>
+                </button>
+            </div>
+        </div>
         
-
         <!-- Pagination -->
         <nav aria-label="Search results pages" class="mt-4">
             <ul class="pagination justify-content-center">
@@ -413,7 +404,38 @@
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+.like-btn:hover {
+    color: #e0245e;
+}
 
+.comment-btn:hover {
+    color: #1da1f2;
+}
+
+.follow-btn {
+    background-color: transparent;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.follow-btn:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Dropdown menu fixes */
+.dropdown-menu-fixed {
+    z-index: 1050 !important; /* Higher z-index to ensure it stays visible */
+}
+
+/* Prevent auto-closing of dropdown menus */
+.dropdown-menu.show {
+    display: block !important;
+}
 
 /* Responsive styling */
 @media (max-width: 767.98px) {
@@ -440,8 +462,9 @@
                     e.preventDefault();
                     e.stopPropagation(); // Stop event propagation to prevent dropdown from closing
                     
-                    // Update button text
-                    dropdownButton.textContent = this.textContent.trim().replace(/✓\s*/, '');
+                    // Update button text - make sure to get the text content correctly
+                    const selectedText = this.textContent.trim().replace(/✓\s*/, '').replace(/^\s*✓\s*/, '');
+                    dropdownButton.textContent = selectedText;
                     
                     // Remove active class from all items
                     dropdownItems.forEach(i => {
@@ -450,6 +473,9 @@
                     
                     // Add active class to clicked item
                     this.classList.add('active');
+                    
+                    // Log for debugging
+                    console.log(`Changed ${dropdownId} to: ${selectedText}`);
                 });
             });
         }
@@ -469,9 +495,12 @@
         });
         
         // Make sure advanced filters stay open when interacting with them
-        document.querySelector('#advancedFilters').addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent collapse from closing when clicking inside
-        });
+        const advancedFilters = document.querySelector('#advancedFilters');
+        if (advancedFilters) {
+            advancedFilters.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent collapse from closing when clicking inside
+            });
+        }
         
         // Prevent dropdown toggle from closing collapse
         document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
@@ -479,9 +508,5 @@
                 e.stopPropagation(); // Prevent event from bubbling to collapse
             });
         });
-        
-        // Initialize datepicker if you have a datepicker library
-        // This is just a placeholder - you would need to include a datepicker library
-        // $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });
     });
 </script>
