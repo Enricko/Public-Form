@@ -1,43 +1,443 @@
-<div class="container">
+<!-- File : pages/settings.html -->
+<div class="container settings-container">
   <div class="page-header">
     <h4>Settings</h4>
   </div>
 
-  <form id="settingsForm">
-    <div class="mb-3">
-      <label for="emailNotifications" class="form-label">Email Notifications</label>
-      <select class="form-select" id="emailNotifications" aria-label="Select notification preferences">
-        <option value="1" selected>Enable</option>
-        <option value="0">Disable</option>
-      </select>
+  <!-- Settings button to open the popup -->
+  <button class="settings-button btn btn-outline-danger mb-4" id="openSettings">
+    <i class="fas fa-cog"></i>
+    Open Settings Panel
+  </button>
+
+  <!-- Additional settings information section to fill blank space -->
+  <div class="settings-info-section">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">Account Information</h5>
+          </div>
+          <div class="card-body">
+            <p><strong>Username:</strong> @current_user</p>
+            <p><strong>Member since:</strong> January 2025</p>
+            <p><strong>Last login:</strong> Today</p>
+            <p><strong>Account type:</strong> Standard</p>
+            <p><a href="#" class="text-danger">View account details</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">Privacy Information</h5>
+          </div>
+          <div class="card-body">
+            <p>Manage your privacy settings to control what information is visible to other users.</p>
+            <p>Your privacy is important to us. You can change these settings at any time.</p>
+            <p><a href="#" class="text-danger">Learn more about privacy settings</a></p>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="mb-3">
-      <label for="changePassword" class="form-label">Change Password</label>
-      <input type="password" class="form-control" id="changePassword" placeholder="New Password" required />
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">Recent Account Activity</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="fas fa-sign-in-alt text-success me-2"></i>
+                  Login from Jakarta, Indonesia
+                </div>
+                <span class="badge bg-secondary rounded-pill">Today</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="fas fa-edit text-info me-2"></i>
+                  Profile updated
+                </div>
+                <span class="badge bg-secondary rounded-pill">Yesterday</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="fas fa-sign-in-alt text-success me-2"></i>
+                  Login from Jakarta, Indonesia
+                </div>
+                <span class="badge bg-secondary rounded-pill">2 days ago</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <button type="submit" class="btn btn-danger w-100">Save Settings</button>
-  </form>
-
-  <!-- Success message (hidden initially) -->
-  <div id="settingsSuccessMessage" class="alert alert-success mt-3" style="display:none;">
-    Your settings have been successfully updated!
   </div>
 
+  <!-- Settings overlay and popup -->
+  <div class="settings-overlay" id="settingsOverlay">
+    <div class="settings-popup">
+      <div class="settings-header">
+        <h2 class="settings-title">User Settings</h2>
+        <button class="close-button" id="closeSettings">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="settings-body">
+        <form id="settingsForm">
+          <div class="setting-item">
+            <div class="setting-with-toggle">
+              <div>
+                <label class="setting-label">Email Notifications</label>
+                <div class="setting-description">Receive updates and notifications via email</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="emailNotifications" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label" for="changeEmail">Change Email</label>
+            <div class="setting-description">Update your account email address</div>
+            <input type="email" class="setting-input" id="changeEmail" placeholder="New Email Address">
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label" for="changePassword">Change Password</label>
+            <div class="setting-description">Update your account password</div>
+            <input type="password" class="setting-input" id="changePassword" placeholder="New Password">
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-with-toggle">
+              <div>
+                <label class="setting-label">Dark Mode</label>
+                <div class="setting-description">Switch between light and dark theme</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="darkMode" class="dark-mode-toggle">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-with-toggle">
+              <div>
+                <label class="setting-label">Profile Visibility</label>
+                <div class="setting-description">Make your profile visible to other users</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="profileVisibility" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-with-toggle">
+              <div>
+                <label class="setting-label">Two-Factor Authentication</label>
+                <div class="setting-description">Add an extra layer of security to your account</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="twoFactorAuth">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="save-button">Save Settings</button>
+
+          <div class="success-message" id="settingsSuccessMessage">
+            Your settings have been successfully updated!
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* General container styles */
+    .settings-container {
+      padding-bottom: 30px;
+    }
+
+    /* Fill blank space section */
+    .settings-info-section {
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+
+    /* Settings Button Styles */
+    .settings-button {
+      background: transparent;
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+      cursor: pointer;
+      padding: 8px 12px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .settings-button:hover {
+      background-color: rgba(220, 53, 69, 0.1);
+    }
+
+    .settings-button i {
+      margin-right: 8px;
+      font-size: 16px;
+    }
+
+    /* Settings Popup Styles */
+    .settings-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--modal-backdrop);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .settings-popup {
+      background-color: var(--card-bg);
+      border-radius: 4px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .settings-header {
+      padding: 16px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .settings-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0;
+      color: var(--text-color);
+    }
+
+    .close-button {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .settings-body {
+      padding: 16px;
+      color: var(--text-color);
+    }
+
+    .setting-item {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+
+    .setting-label {
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: block;
+      color: var(--text-color);
+    }
+
+    .setting-description {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    /* Toggle Switch Styles */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: var(--primary-color);
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(18px);
+    }
+
+    .setting-with-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .setting-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
+
+    .save-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .save-button:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .success-message {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 12px;
+      border-radius: 4px;
+      margin-top: 12px;
+      text-align: center;
+      display: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .settings-popup {
+        width: 95%;
+        max-height: 90vh;
+      }
+    }
+  </style>
+
   <script>
-    document.getElementById('settingsForm').addEventListener('submit', function(e) {
-      e.preventDefault();  // Prevent form submission
-  
-      // Simple validation for password field
-      const password = document.getElementById('changePassword').value;
-      if (password) {
-        // Simulate saving settings (you can replace this with a real API call)
-        setTimeout(() => {
-          document.getElementById('settingsSuccessMessage').style.display = 'block';
-        }, 1000);
+    // Get DOM elements
+    const openSettingsBtn = document.getElementById('openSettings');
+    const closeSettingsBtn = document.getElementById('closeSettings');
+    const settingsOverlay = document.getElementById('settingsOverlay');
+    const settingsForm = document.getElementById('settingsForm');
+    const successMessage = document.getElementById('settingsSuccessMessage');
+
+    // Open settings popup
+    openSettingsBtn.addEventListener('click', function (e) {
+      // Close any open modals first
+      const customEditModal = document.getElementById('customEditModal');
+      if (customEditModal && customEditModal.style.display === 'block') {
+        customEditModal.style.display = 'none';
+
+        // If profilePage object exists, call its closeEditModal function
+        if (window.profilePage && typeof window.profilePage.closeEditModal === 'function') {
+          window.profilePage.closeEditModal();
+        }
+      }
+
+      // Now show settings overlay
+      settingsOverlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Prevent scrolling behind overlay
+
+      // Stop event propagation to prevent conflicts
+      e.stopPropagation();
+    }, true);
+
+    // Close settings popup
+    closeSettingsBtn.addEventListener('click', function () {
+      settingsOverlay.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Re-enable scrolling
+      successMessage.style.display = 'none'; // Hide success message if visible
+    });
+
+    // Close popup when clicking outside of it
+    settingsOverlay.addEventListener('click', function (e) {
+      if (e.target === settingsOverlay) {
+        settingsOverlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        successMessage.style.display = 'none';
       }
     });
-  </script>
 
+    // Handle form submission
+    settingsForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent form submission
+
+      // Simple validation for email and password fields
+      const email = document.getElementById('changeEmail').value;
+      const password = document.getElementById('changePassword').value;
+
+      // Simulate saving settings (replace with real API call)
+      setTimeout(() => {
+        successMessage.style.display = 'block';
+
+        // Auto-hide success message after 3 seconds
+        setTimeout(() => {
+          successMessage.style.display = 'none';
+        }, 3000);
+      }, 1000);
+    });
+
+    // Call the function to set up dark mode listeners after the page loads
+    if (window.setupDarkModeAfterPageLoad) {
+      window.setupDarkModeAfterPageLoad();
+    }
+  </script>
 </div>

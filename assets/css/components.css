@@ -1,0 +1,337 @@
+/* Buttons */
+.btn {
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 0.375rem 0.75rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-light {
+    background-color: var(--light-color);
+    border-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.btn-outline-danger {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.btn-outline-light {
+    border-color: white;
+    color: white;
+    background-color: transparent;
+}
+
+/* Post Button */
+.post-button {
+    display: block;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(220, 53, 69, 0.3);
+}
+
+.post-button:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+    transform: translateY(-1px);
+}
+
+.post-button i {
+    margin-right: 8px;
+}
+
+/* Follow Button */
+.follow-btn {
+    background-color: var(--follow-btn-bg);
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.follow-btn:hover {
+    background-color: #e53e00;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(255, 69, 0, 0.2);
+}
+
+.trending-item .follow-btn {
+    padding: 4px 12px;
+    font-size: 0.75rem;
+}
+
+/* Edit Profile Button */
+.edit-profile-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.edit-profile-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Cards */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--box-shadow);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px var(--box-shadow-hover);
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.card-header.bg-danger {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+/* Alerts */
+.alert {
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-dismissible {
+    padding-right: 4rem;
+}
+
+.btn-close {
+    position: absolute;
+    right: 0;
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    border: 0;
+    font-size: 1.5rem;
+    cursor: pointer;
+    filter: brightness(1);
+}
+
+/* Tabs */
+.nav-tabs {
+    background-color: var(--card-bg);
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-tabs .nav-link {
+    color: var(--text-color);
+    border: none;
+    padding: 12px 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    background-color: transparent;
+}
+
+.nav-tabs .nav-link:hover:not(.active) {
+    color: var(--primary-color);
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+.tab-content {
+    background-color: transparent;
+    padding: 5px;
+}
+
+.tab-pane {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.tab-pane.fade {
+    opacity: 0;
+}
+
+.tab-pane.show {
+    opacity: 1;
+}
+
+/* List Groups */
+.list-group-item {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--text-color);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--primary-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(18px);
+}
+
+/* Badges */
+.badge {
+    padding: 0.25em 0.4em;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    font-size: 75%;
+}
+
+.badge-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: var(--primary-color);
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+}
+
+.page-link:hover {
+    color: var(--primary-hover);
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    text-decoration: none;
+}
+
+.page-item.disabled .page-link {
+    color: var(--secondary-color);
+    pointer-events: none;
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+}

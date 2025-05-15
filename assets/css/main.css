@@ -1,0 +1,9 @@
+/* main.css */
+@import 'base.css';
+@import 'layout.css';
+@import 'components.css';
+@import 'profile.css';
+@import 'posts.css';
+@import 'trending.css';
+@import 'modals.css';
+@import 'dark-mode.css';
