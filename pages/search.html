@@ -1,43 +1,148 @@
 <!-- FILE : pages/search.html -->
 
 <div class="container">
-    <h2 class="page-header mb-4 pb-2 border-bottom">Search Results</h2>
-
-    
+    <h4 class="page-header mb-4 pb-2 border-bottom">Search Results..</h4>
 
     <!-- Search Form -->
     <div class="search-container mb-4">
         <form id="searchForm" class="d-flex">
             <input type="text" id="searchInput" class="form-control me-2" value="javascript" placeholder="Search forums, users, or tags..." />
-            <select id="searchType" class="form-select me-2" style="max-width: 150px;">
-                <option value="all">All</option>
-                <option value="posts">Posts</option>
-                <option value="users">Users</option>
-                <option value="tags">Tags</option>
-            </select>
+            <div class="ms-auto">
             <button type="submit" class="btn btn-primary">Search</button>
+            </div>
         </form>
     </div>
 
-    <!-- Filter Optionss -->
-    <div class="filter-options d-flex align-items-center mb-3">
-        <div class="me-3">
-            <label class="me-2">Sort by:</label>
-            <select id="sortOptions" class="form-select form-select-sm d-inline-block" style="width: auto;">
-                <option value="relevant">Most Relevant</option>
-                <option value="recent">Most Recent</option>
-                <option value="popular">Most Popular</option>
-            </select>
+    <!-- Search Filters -->
+    <div class="search-filters mb-4">
+        <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <div class="d-flex align-items-center">
+                    <span class="me-2">Sort by:</span>
+                    <div class="dropdown flex-grow-1">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Most Relevant
+                        </button>
+                        <ul class="dropdown-menu w-100" aria-labelledby="sortDropdown">
+                            <li><a class="dropdown-item active" href="javascript:void(0)"><i class="fas fa-check me-2 text-primary"></i>Most Relevant</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)">Most Recent</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)">Most Popular</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)">Most Commented</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex align-items-center">
+                    <span class="me-2">Time:</span>
+                    <div class="dropdown flex-grow-1">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="timeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Anytime
+                        </button>
+                        <ul class="dropdown-menu w-100" aria-labelledby="timeDropdown">
+                            <li><a class="dropdown-item active" href="javascript:void(0)"><i class="fas fa-check me-2 text-primary"></i>Anytime</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)">Today</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)">This Week</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)">This Month</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)">This Year</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <label class="me-2">Time:</label>
-            <select id="timeOptions" class="form-select form-select-sm d-inline-block" style="width: auto;">
-                <option value="anytime">Anytime</option>
-                <option value="day">Today</option>
-                <option value="week">This Week</option>
-                <option value="month">This Month</option>
-                <option value="year">This Year</option>
-            </select>
+        
+        <!-- Advanced Filters (collapsible) -->
+        <div class="mt-3">
+            <a class="text-decoration-none" data-bs-toggle="collapse" href="#advancedFilters" role="button" aria-expanded="false" aria-controls="advancedFilters">
+                <i class="fas fa-sliders-h me-1"></i> Advanced Filters <i class="fas fa-chevron-down ms-1 small"></i>
+            </a>
+            <div class="collapse mt-3" id="advancedFilters">
+                <div class="card card-body bg-light">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="categoryFilter" class="form-label">Category</label>
+                            <div class="dropdown w-100">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    All Categories
+                                </button>
+                                <ul class="dropdown-menu w-100" aria-labelledby="categoryDropdown">
+                                    <li><a class="dropdown-item active" href="javascript:void(0)">All Categories</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)">Technology</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)">Design</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)">Business</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)">Lifestyle</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)">Health</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="locationFilter" class="form-label">Location</label>
+                            <div class="dropdown w-100">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="locationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    All Locations
+                                </button>
+                                <ul class="dropdown-menu w-100" aria-labelledby="locationDropdown">
+                                    <li><a class="dropdown-item active" href="javascript:void(0)">All Locations</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)">Global</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)">Japan</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)">Indonesia</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="languageFilter" class="form-label">Language</label>
+                            <div class="dropdown w-100">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    All Languages
+                                </button>
+                                <ul class="dropdown-menu w-100" aria-labelledby="languageDropdown">
+                                    <li><a class="dropdown-item active" href="javascript:void(0)">All Languages</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)">English</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)">Indonesian</a></li>                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Content Type</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="hasImage" value="image">
+                                    <label class="form-check-label" for="hasImage">Images</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="hasVideo" value="video">
+                                    <label class="form-check-label" for="hasVideo">Videos</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="hasLinks" value="links">
+                                    <label class="form-check-label" for="hasLinks">Links</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Date Range</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">From</span>
+                                <input type="text" class="form-control" placeholder="dd/mm/yyyy" id="dateFrom">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">To</span>
+                                <input type="text" class="form-control" placeholder="dd/mm/yyyy" id="dateTo">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <div class="d-grid gap-2 w-100">
+                                <button class="btn btn-danger">Apply Filters</button>
+                                <button class="btn btn-outline-secondary">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -58,7 +163,7 @@
     </ul>
 
     <div class="search-results">
-        <h4 id="result-count" class="mb-3">15 results found for "javascript"</h4>
+        <h4 id="result-count" class="mb-3">4 results found for "javascript"</h4>
 
         <!-- Tag Result -->
         <div class="social-post">
@@ -107,8 +212,8 @@
                 </div>
             </div>
             <div class="post-content">
-                Just finished the backend implementation for our new messaging
-                feature. Excited to see this go live next week! #WebDevelopment
+                Just finished the frontend implementation for our new messaging
+                feature. Excited to see this go live next week! #javascript #WebDevelopment
                 #Coding
             </div>
             <div class="post-actions">
@@ -130,278 +235,47 @@
             </div>
         </div>
 
-        <!-- Single Image Post -->
-        <div class="social-post">
-            <div class="post-header">
-                <img
-                    src="../assets/images/profile.png"
-                    alt="Profile"
-                    class="post-avatar" />
-                <div class="post-info">
-                    <div class="post-author">
-                        @Crocodilo <span class="post-date">· Yesterday</span>
-                    </div>
-                    <div class="post-meta">CTO @ PublicForum</div>
-                </div>
-            </div>
-            <div class="post-content">
-                Our new office setup is ready! 🚀 #WorkspaceGoals
-            </div>
-            <div class="post-media single-image">
-                <img
-                    src="../assets/images/post.jpg"
-                    alt="Office setup"
-                    class="post-image" />
-            </div>
-            <div class="post-actions">
-                <button class="action-btn like-btn">
-                    <i class="far fa-heart"></i> <span>132</span>
-                </button>
-                <button class="action-btn comment-btn">
-                    <i class="far fa-comment"></i> <span>28</span>
-                </button>
-                <button class="action-btn repost-btn">
-                    <i class="fas fa-retweet"></i> <span>14</span>
-                </button>
-                <button class="action-btn share-btn">
-                    <i class="far fa-share-square"></i>
-                </button>
-                <button class="action-btn save-btn">
-                    <i class="far fa-bookmark"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Video Post with improved video thumbnail -->
-        <div class="social-post">
-            <div class="post-header">
-                <img
-                    src="../assets/images/profile.png"
-                    alt="Profile"
-                    class="post-avatar" />
-                <div class="post-info">
-                    <div class="post-author">
-                        @Crocodilo <span class="post-date">· 2 days ago</span>
-                    </div>
-                    <div class="post-meta">CTO @ PublicForum</div>
-                </div>
-            </div>
-
-            <div class="post-content">
-                Check out this quick demo of our new feature! 👇
-            </div>
-
-            <!-- Video player that uses the video file as thumbnail -->
-            <div class="post-media video-container">
-                <video id="demo-video" controls class="video-element">
-                    <source src="../assets/video/post.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-                <div class="video-placeholder" onclick="playVideo('demo-video')">
-                    <!-- This div will show the first frame of the video as thumbnail -->
-                    <div class="video-thumbnail-wrapper">
-                        <video class="video-thumbnail-source" muted>
-                            <source src="../assets/video/post.mp4" type="video/mp4" />
-                        </video>
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <div class="video-duration">2:45</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="post-actions">
-                <button class="action-btn like-btn">
-                    <i class="far fa-heart"></i> <span>202</span>
-                </button>
-                <button class="action-btn comment-btn">
-                    <i class="far fa-comment"></i> <span>37</span>
-                </button>
-                <button class="action-btn repost-btn">
-                    <i class="fas fa-retweet"></i> <span>18</span>
-                </button>
-                <button class="action-btn share-btn">
-                    <i class="far fa-share-square"></i>
-                </button>
-                <button class="action-btn save-btn">
-                    <i class="far fa-bookmark"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Multiple Images Post -->
-        <div class="social-post">
-            <div class="post-header">
-                <img
-                    src="../assets/images/profile.png"
-                    alt="Profile"
-                    class="post-avatar" />
-                <div class="post-info">
-                    <div class="post-author">
-                        @Crocodilo <span class="post-date">· 3 days ago</span>
-                    </div>
-                    <div class="post-meta">CTO @ PublicForum</div>
-                </div>
-            </div>
-            <div class="post-content">
-                Highlights from our team building event this weekend! 🎉 #TeamSpirit
-            </div>
-            <div class="post-media image-grid">
-                <div class="grid-row">
-                    <div class="grid-item">
-                        <img
-                            src="../assets/images/post.jpg"
-                            alt="Team photo 1"
-                            class="grid-image" />
-                    </div>
-                    <div class="grid-item">
-                        <img
-                            src="../assets/images/post2.jpg"
-                            alt="Team photo 2"
-                            class="grid-image" />
-                    </div>
-                </div>
-                <div class="grid-row">
-                    <div class="grid-item">
-                        <img
-                            src="../assets/images/post2.jpg"
-                            alt="Team photo 3"
-                            class="grid-image" />
-                    </div>
-                    <div class="grid-item more-images">
-                        <img
-                            src="../assets/images/post.jpg"
-                            alt="Team photo 4"
-                            class="grid-image" />
-                        <div class="image-count">+3</div>
-                    </div>
-                </div>
-            </div>
-            <div class="post-actions">
-                <button class="action-btn like-btn">
-                    <i class="far fa-heart"></i> <span>176</span>
-                </button>
-                <button class="action-btn comment-btn">
-                    <i class="far fa-comment"></i> <span>42</span>
-                </button>
-                <button class="action-btn repost-btn">
-                    <i class="fas fa-retweet"></i> <span>8</span>
-                </button>
-                <button class="action-btn share-btn">
-                    <i class="far fa-share-square"></i>
-                </button>
-                <button class="action-btn save-btn">
-                    <i class="far fa-bookmark"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Image-only Post (no text) -->
-        <div class="social-post">
-            <div class="post-header">
-                <img
-                    src="../assets/images/profile.png"
-                    alt="Profile"
-                    class="post-avatar" />
-                <div class="post-info">
-                    <div class="post-author">
-                        @Crocodilo <span class="post-date">· 4 days ago</span>
-                    </div>
-                    <div class="post-meta">CTO @ PublicForum</div>
-                </div>
-            </div>
-            <div class="post-media single-image">
-                <img
-                    src="../assets/images/post.jpg"
-                    alt="Scenic view"
-                    class="post-image" />
-            </div>
-            <div class="post-actions">
-                <button class="action-btn like-btn">
-                    <i class="far fa-heart"></i> <span>254</span>
-                </button>
-                <button class="action-btn comment-btn">
-                    <i class="far fa-comment"></i> <span>31</span>
-                </button>
-                <button class="action-btn repost-btn">
-                    <i class="fas fa-retweet"></i> <span>22</span>
-                </button>
-                <button class="action-btn share-btn">
-                    <i class="far fa-share-square"></i>
-                </button>
-                <button class="action-btn save-btn">
-                    <i class="far fa-bookmark"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Repost with comment -->
-        <div class="social-post">
-            <div class="post-header">
-                <img
-                    src="../assets/images/profile.png"
-                    alt="Profile"
-                    class="post-avatar" />
-                <div class="post-info">
-                    <div class="post-author">
-                        @Crocodilo <span class="post-date">· 1 week ago</span>
-                    </div>
-                    <div class="post-meta">CTO @ PublicForum</div>
-                </div>
-            </div>
-            <div class="post-content">
-                This is absolutely revolutionary for web development! 👇
-            </div>
-            <div class="reposted-content">
-                <div class="repost-header">
-                    <i class="fas fa-retweet"></i> Reposted from
-                    <span class="repost-author">@webdev_news</span>
-                </div>
-                <div class="repost-post">
-                    <div class="post-header">
-                        <img
-                            src="../assets/images/profile.png"
-                            alt="Original poster"
-                            class="post-avatar" />
-                        <div class="post-info">
-                            <div class="post-author">
-                                @webdev_news <span class="post-date">· 1 week ago</span>
-                            </div>
-                            <div class="post-meta">Web Development News</div>
-                        </div>
-                    </div>
-                    <div class="post-content">
-                        Breaking: New JavaScript framework announced that promises 10x
-                        faster rendering speeds and 50% smaller bundle sizes. This could
-                        change everything about how we build web apps. #WebDev #JavaScript
-                    </div>
-                    <div class="post-media single-image">
-                        <img
-                            src="../assets/images/post.jpg"
-                            alt="Framework announcement"
-                            class="post-image" />
-                    </div>
-                </div>
-            </div>
-            <div class="post-actions">
-                <button class="action-btn like-btn">
-                    <i class="far fa-heart"></i> <span>321</span>
-                </button>
-                <button class="action-btn comment-btn">
-                    <i class="far fa-comment"></i> <span>64</span>
-                </button>
-                <button class="action-btn repost-btn">
-                    <i class="fas fa-retweet"></i> <span>143</span>
-                </button>
-                <button class="action-btn share-btn">
-                    <i class="far fa-share-square"></i>
-                </button>
-                <button class="action-btn save-btn">
-                    <i class="far fa-bookmark"></i>
-                </button>
-            </div>
-        </div>
+<!-- Single Image Post -->
+<div class="social-post">
+  <div class="post-header">
+    <img
+      src="../assets/images/profile.png"
+      alt="Profile"
+      class="post-avatar" />
+    <div class="post-info">
+      <div class="post-author">
+        @MochacinoUno <span class="post-date">· Yesterday</span>
+      </div>
+      <div class="post-meta">Web Developer @ PublicForum</div>
+    </div>
+  </div>
+  <div class="post-content">
+    I Love javascript more than you know my love #javascript</div>
+  <div class="post-media single-image">
+    <img
+      src="../assets/images/javascript.jpeg"
+      alt="Office setup"
+      class="post-image" />
+  </div>
+  <div class="post-actions">
+    <button class="action-btn like-btn">
+      <i class="far fa-heart"></i> <span>99</span>
+    </button>
+    <button class="action-btn comment-btn">
+      <i class="far fa-comment"></i> <span>77</span>
+    </button>
+    <button class="action-btn repost-btn">
+      <i class="fas fa-retweet"></i> <span>69</span>
+    </button>
+    <button class="action-btn share-btn">
+      <i class="far fa-share-square"></i>
+    </button>
+    <button class="action-btn save-btn">
+      <i class="far fa-bookmark"></i>
+    </button>
+  </div>
+</div>
+        
 
         <!-- Pagination -->
         <nav aria-label="Search results pages" class="mt-4">
@@ -418,3 +292,217 @@
             </ul>
         </nav>
     </div>
+</div>
+
+<style>
+/* Search filter styling */
+.btn-outline-secondary {
+    border-color: #ced4da;
+    color: #495057;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+    color: #212529;
+}
+
+.dropdown-item.active {
+    background-color: transparent;
+    color: inherit;
+    font-weight: 500;
+}
+
+/* Date input styling */
+.input-group-text {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+/* Apply Filters button */
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Advanced filter card */
+.card.bg-light {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e9ecef;
+}
+
+/* Social post styling */
+.social-post {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+}
+
+.post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.post-author {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.post-date {
+    color: #6c757d;
+    font-weight: normal;
+    font-size: 0.85rem;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.post-content {
+    padding: 0 16px 12px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.post-media {
+    width: 100%;
+}
+
+.post-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    border-top: 1px solid #eee;
+}
+
+.action-btn {
+    border: none;
+    background: none;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.like-btn:hover {
+    color: #e0245e;
+}
+
+.comment-btn:hover {
+    color: #1da1f2;
+}
+
+.follow-btn {
+    background-color: transparent;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.follow-btn:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Responsive styling */
+@media (max-width: 767.98px) {
+    .search-filters .row .col-md-6:first-child {
+        margin-bottom: 1rem;
+    }
+    
+    .col-md-4 {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+
+<script>
+    // Initialize all dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to handle dropdown selection without closing collapse
+        function setupDropdown(dropdownId) {
+            const dropdownItems = document.querySelectorAll(`[aria-labelledby="${dropdownId}"] .dropdown-item`);
+            const dropdownButton = document.getElementById(dropdownId);
+            
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Stop event propagation to prevent dropdown from closing
+                    
+                    // Update button text
+                    dropdownButton.textContent = this.textContent.trim().replace(/✓\s*/, '');
+                    
+                    // Remove active class from all items
+                    dropdownItems.forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                });
+            });
+        }
+        
+        // Setup all dropdowns
+        setupDropdown('sortDropdown');
+        setupDropdown('timeDropdown');
+        setupDropdown('categoryDropdown');
+        setupDropdown('locationDropdown');
+        setupDropdown('languageDropdown');
+        
+        // Prevent dropdown menus from closing when items are clicked
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent dropdown from closing when clicking inside
+            });
+        });
+        
+        // Make sure advanced filters stay open when interacting with them
+        document.querySelector('#advancedFilters').addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent collapse from closing when clicking inside
+        });
+        
+        // Prevent dropdown toggle from closing collapse
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent event from bubbling to collapse
+            });
+        });
+        
+        // Initialize datepicker if you have a datepicker library
+        // This is just a placeholder - you would need to include a datepicker library
+        // $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });
+    });
+</script>
