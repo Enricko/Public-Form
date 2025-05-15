@@ -97,10 +97,8 @@
 }
 
 .tab-content {
-  background-color: #fff;
-  border-radius: 0 0 8px 8px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background-color: transparent;
+  padding: 5px;
 }
 
 .post-card {

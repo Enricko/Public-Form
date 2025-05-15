@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - PublicForum</title>
+  <style>
+    :root {
+      --bg-dark: #1a1a1b;
+      --bg-light: #272729;
+      --text-light: #d7dadc;
+      --text-muted: #818384;
+      --accent: #ff4500;
+      --highlight: #ff652f;
+      --card-bg: #1e1e20;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    header {
+      background: var(--accent);
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #fff;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      border-bottom: 2px solid var(--highlight);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      color: var(--highlight);
+      margin-top: 0;
+    }
+
+    .team-member {
+      text-align: center;
+    }
+
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 3px solid var(--accent);
+    }
+
+    .team-member h4 {
+      margin: 10px 0 5px;
+    }
+
+    .team-member p.role {
+      color: var(--text-muted);
+      margin: 0 0 10px;
+    }
+
+    footer {
+      background-color: var(--bg-light);
+      color: var(--text-muted);
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>About PublicForum</h1>
+    <p>PublicForum is home to thousands of communities, endless conversation, and authentic human connection. Whether you're into breaking news, sports, TV fan theories, or a never-ending stream of the internet's cutest animals, there's a community on PublicForum for you.</p>
+  </header>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>Our Mission</h2>
+    </center>
+    <p><img src="Hellokitty.jpg" width="300" height="350" alt="Bombardino">
+    </center>
+    
+    <div class="card">
+      <p>We aim to provide a respectful, diverse, and enriching digital environment where meaningful conversations and knowledge exchanges thrive. PublicForum is built to be a space where everyone can contribute, learn, and grow together through discussions that matter.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>Core Values</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Inclusivity</h3>
+        <p>We are committed to creating an environment where everyone feels welcome, respected, and empowered. We actively seek to include individuals from diverse backgrounds, cultures, identities, and experiences. By embracing a wide range of perspectives, we foster a stronger, more innovative, and empathetic community. Every voice matters, and we work diligently to ensure that all users feel seen, heard, and valued.</p>
+      </div>
+      <div class="card">
+        <h3>Integrity</h3>
+        <p>Our foundation is built on trust, which we uphold through transparency, honesty, and accountability in all that we do. We believe in doing the right thing, even when it’s difficult or inconvenient. This means being truthful in our communications, respectful in our interactions, and responsible stewards of the platforms and communities we serve. Integrity guides our decisions and actions as we strive to earn and maintain the trust of those who rely on us.</p>
+      </div>
+      <div class="card">
+        <h3>Curiosity</h3>
+        <p>We believe that progress begins with curiosity—a desire to understand more deeply, to ask meaningful questions, and to challenge the status quo. Our community is one where learning is celebrated, and exploration is encouraged. We support a culture that values open-minded inquiry, continuous growth, and the pursuit of knowledge for the betterment of individuals and the collective.</p>
+      </div>
+      <div class="card">
+        <h3>Respectful Discourse</h3>
+        <p>We are dedicated to fostering a community where open and respectful conversations can flourish. Even when opinions differ, we believe in engaging with one another thoughtfully and kindly. We encourage active listening, empathy, and a willingness to understand opposing views. Everyone deserves to express themselves without fear of hostility or judgment, and we work to ensure that dialogue remains constructive, inclusive, and civil.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>Meet the Team</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card team-member">
+        <img src="Bombardino.jpeg" alt="Bombardino">
+        <h4>Bombardino</h4>
+        <p class="role">Founder & CEO</p>
+        <p>Guiding the vision of a better discourse-driven internet with fiery passion.</p>
+      </div>
+      <div class="card team-member">
+        <img src="ClownDrip.png" alt="Crocodilo">
+        <h4>Crocodilo</h4>
+        <p class="role">CTO</p>
+        <p>Engineering the foundations of a more thoughtful online community.</p>
+      </div>
+      <div class="card team-member">
+        <img src="Radahn.png" alt="Sinful John">
+        <h4>Sinful John</h4>
+        <p class="role">Community Director</p>
+        <p>Building bridges between people while upholding community trust.</p>
+      </div>
+      <div class="card team-member">
+        <img src="Steve.png" alt="Steve">
+        <h4>Steve</h4>
+        <p class="role">Head of Content</p>
+        <p>Curating and surfacing valuable knowledge shared across the platform.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 PublicForum. All rights reserved.</p>
+    <p>Shaping the future of online discourse, one conversation at a time.</p>
+  </footer>
+</body>
+</html>
