@@ -1,0 +1,142 @@
+/* Trending Section */
+.trending {
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px var(--box-shadow);
+  transition: all 0.2s ease;
+}
+
+.trending:hover {
+  box-shadow: 0 4px 12px var(--box-shadow-hover);
+}
+
+.trending h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.trending-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  margin-bottom: 8px;
+}
+
+.trending-item:hover {
+  background-color: var(--trending-item-hover);
+}
+
+.trending-item-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.trending-item strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.trending-item small {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.follow-btn-container {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Suggested Users */
+.suggested-users {
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px var(--box-shadow);
+  transition: all 0.2s ease;
+}
+
+.suggested-users:hover {
+  box-shadow: 0 4px 12px var(--box-shadow-hover);
+}
+
+.suggested-users h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.user {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.user:hover {
+  background-color: var(--trending-item-hover);
+}
+
+.user-avatar {
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.user-info-container {
+  flex: 1;
+  min-width: 0;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+  color: var(--text-color);
+}
+
+.user-description {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+}
+
+.user-additional-info {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+}
