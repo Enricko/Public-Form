@@ -1,0 +1,419 @@
+/* FILE : assets/css/styles.css */
+body {
+  padding-top: 56px; /* Height of navbar */
+  padding-bottom: 50px; /* Height of footer */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Full-height left sidebar with fixed width */
+.sidebar-column {
+  padding: 0;
+  background-color: #ffffff;
+  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 56px; /* Same as navbar height */
+  bottom: 50px; /* Same as footer height */
+  width: inherit; /* Takes the width from the column */
+  max-width: inherit;
+  z-index: 1020;
+}
+
+/* Sidebar content container */
+.sidebar {
+  position: sticky;
+  top: 70px; /* Adjusted space from top after navbar */
+  height: calc(
+    100vh - 120px
+  ); /* Viewport height minus space for navbar and footer */
+  overflow-y: auto;
+  padding: 20px 15px;
+  scrollbar-width: thin;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar scrollbar styling */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+/* Sidebar navigation styling */
+.sidebar .nav-link {
+  color: #333;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+  background-color: rgba(220, 53, 69, 0.08);
+  color: #dc3545;
+}
+
+.sidebar .nav-link.active {
+  background-color: rgba(220, 53, 69, 0.12);
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.sidebar .nav-item {
+  margin-bottom: 5px;
+}
+
+/* Post button styling */
+.post-button {
+  display: block;
+  width: 100%;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(220, 53, 69, 0.3);
+}
+
+.post-button:hover {
+  background-color: #c82333;
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+  transform: translateY(-1px);
+}
+
+.post-button i {
+  margin-right: 8px;
+}
+
+/* Adjust content area to make space for the fixed sidebar */
+.content-column {
+  margin-left: 16.666667%; /* Equivalent to col-md-2 width */
+}
+
+/* Fixed navbar and footer settings */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  height: 56px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  z-index: 1030;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Right sidebar adjustments */
+.right-sidebar {
+  position: sticky;
+  top: 75px;
+  max-height: calc(100vh - 125px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar-column {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    max-height: none;
+    overflow-y: visible;
+    margin-bottom: 20px;
+  }
+
+  .content-column {
+    margin-left: 0;
+  }
+
+  body {
+    padding-top: 56px;
+  }
+}
+/* Sticky Right Sidebar CSS */
+
+/* Base styles for right sidebar containers */
+.right-sidebar {
+  position: sticky;
+  top: 75px; /* Same as the left sidebar positioning */
+  max-height: calc(100vh - 125px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Styling the scrollbar for webkit browsers */
+.right-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.right-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.right-sidebar::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+.right-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+/* Enhanced styling for trending section */
+.trending {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.trending:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.trending h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.trending-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  margin-bottom: 8px;
+}
+
+.trending-item:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Container for the hashtag and post count */
+.trending-item-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Critical for truncation */
+  flex: 1;
+}
+
+/* Hashtag style with truncation */
+.trending-item strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Post count style with truncation */
+.trending-item small {
+  color: #536471;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Make sure the button container doesn't shrink */
+.trending-item .button-container {
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+/* Make the follow button more compact for the trending section */
+.trending-item .follow-btn {
+  padding: 4px 12px;
+  font-size: 0.75rem;
+}
+
+/* Additional responsive fixes */
+@media (max-width: 992px) {
+  .trending-item {
+    padding: 8px 6px;
+  }
+}
+
+/* Enhanced styling for suggested users section */
+.suggested-users {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.suggested-users:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.suggested-users h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.user:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.user-name {
+  font-weight: 600;
+}
+
+.follow-btn {
+  background: #ff4500;
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.follow-btn:hover {
+  background: #e53e00;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(255, 69, 0, 0.2);
+}
+
+/* Making right sidebar responsive */
+@media (max-width: 992px) {
+  .right-sidebar {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+/* Fixes for Recommended Users overflow issues */
+
+/* Add these styles to your existing CSS file */
+
+/* Main container for user info */
+.user-info-container {
+  flex: 1;
+  min-width: 0; /* Critical for text truncation to work */
+  margin-right: 10px;
+}
+
+/* Username style with truncation */
+.user-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+}
+
+/* User description with truncation */
+.user-description {
+  color: #6c757d;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+}
+
+/* Additional user info with truncation */
+.user-additional-info {
+  color: #6c757d;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+}
+
+/* Ensure follow button doesn't shrink and maintains spacing */
+.follow-btn-container {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Updated user container to use flex properly */
+.user {
+  display: flex;
+  align-items: flex-start; /* Align items at the top */
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+/* Ensure the avatar doesn't shrink */
+.user-avatar {
+  flex-shrink: 0;
+  margin-right: 10px;
+}
