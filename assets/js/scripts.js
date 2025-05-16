@@ -12,7 +12,13 @@ function loadPage(page, id) {
   // Immediately save current page to sessionStorage (before fetch)
   saveCurrentPageState(page, id);
 
-  window.scrollTo(0, 0);
+  // Force immediate scroll to top WITHOUT animation
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'auto' // This explicitly disables smooth scrolling
+  });
+
   fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -23,6 +29,14 @@ function loadPage(page, id) {
     .then(data => {
       // Set the HTML content
       document.getElementById("page-content").innerHTML = data;
+
+      // Force another immediate scroll to top to ensure it's at the top
+      // This helps with pages that might have content loaded dynamically
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto'
+      });
 
       // Force script execution by replacing all scripts
       executeScripts(data, document.getElementById("page-content"));
