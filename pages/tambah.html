@@ -5,7 +5,7 @@
     </div>
 
     <div class="card-body">
-      <!-- User Info -->
+      
       <div class="d-flex align-items-center mb-4">
         <img src="assets/images/profile.png" alt="Profile" class="rounded-circle me-3" style="width: 42px; height: 42px;" />
         <div>
@@ -14,9 +14,9 @@
         </div>
       </div>
 
-      <!-- Post Form -->
+      
       <form id="createPostForm">
-        <!-- Title Input -->
+        
         <div class="mb-3">
           <input
             type="text"
@@ -25,7 +25,7 @@
             placeholder="Judul Posting (opsional)" />
         </div>
 
-        <!-- Content Input with Counter -->
+        
         <div class="mb-3 position-relative">
           <textarea
             class="form-control border-0"
@@ -39,7 +39,7 @@
           </div>
         </div>
 
-        <!-- Media Upload Area -->
+        
         <div class="mb-3">
           <div id="dropArea" class="border border-dashed border-secondary rounded p-3 text-center">
             <i class="fas fa-cloud-upload-alt fa-2x mb-2 text-muted"></i>
@@ -47,7 +47,7 @@
             <p class="small text-muted mb-0">atau klik tombol di bawah untuk memilih file</p>
           </div>
 
-          <!-- Media Stats -->
+          
           <div id="mediaStats" class="d-none mb-2">
             <span class="badge bg-primary me-2">
               <i class="far fa-image me-1"></i><span id="imageCount">0</span> Gambar
@@ -58,43 +58,31 @@
             <small class="text-muted ms-2">Maksimal 10 file</small>
           </div>
 
-          <!-- Media Preview Area -->
+          
           <div id="mediaPreviewContainer" class="mb-3">
             <div id="mediaPreviewArea" class="row g-2"></div>
           </div>
         </div>
 
-        <!-- Poll Preview Area -->
-        <div id="pollPreviewArea" class="mb-3"></div>
-
-        <!-- Formatting Toolbar -->
+        
         <div class="d-flex justify-content-between align-items-center py-3 border-top border-bottom mb-3">
           <div class="btn-group">
             <button type="button" class="btn btn-outline-primary rounded-circle me-2" id="uploadImageBtn" data-bs-toggle="tooltip"
-              title="Tambah Gambar (bisa pilih banyak)">
+              title="Tambah Gambar (bisa pilih banyak)" onclick="document.getElementById('imageInput').click(); return false;">
               <i class="far fa-image"></i>
             </button>
             <button type="button" class="btn btn-outline-primary rounded-circle me-2" id="uploadVideoBtn" data-bs-toggle="tooltip"
-              title="Tambah Video (bisa pilih banyak)">
+              title="Tambah Video (bisa pilih banyak)" onclick="document.getElementById('videoInput').click(); return false;">
               <i class="far fa-file-video"></i>
-            </button>
-            <button type="button" class="btn btn-outline-primary rounded-circle me-2" id="addPollBtn" data-bs-toggle="tooltip" title="Buat Polling">
-              <i class="fas fa-poll-h"></i>
-            </button>
-            <button type="button" class="btn btn-outline-primary rounded-circle me-2" id="addEmojiBtn" data-bs-toggle="tooltip" title="Tambah Emoji">
-              <i class="far fa-smile"></i>
-            </button>
-            <button type="button" class="btn btn-outline-primary rounded-circle me-2" id="locationBtn" data-bs-toggle="tooltip" title="Tambah Lokasi">
-              <i class="fas fa-map-marker-alt"></i>
             </button>
           </div>
         </div>
 
-        <!-- Hidden file inputs -->
+        
         <input type="file" id="imageInput" accept="image/*" multiple style="display: none;" />
         <input type="file" id="videoInput" accept="video/*" multiple style="display: none;" />
 
-        <!-- Tags Input -->
+        
         <div class="mb-4">
           <div class="input-group">
             <span class="input-group-text bg-light"><i class="fas fa-hashtag"></i></span>
@@ -106,135 +94,23 @@
           </div>
         </div>
 
-        <!-- Submit Button -->
+        
         <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-secondary me-2" id="previewBtn">Pratinjau</button>
+          <button type="button" class="btn btn-secondary me-2" id="previewBtn" onclick="showPreview(); return false;">Pratinjau</button>
           <button type="submit" class="btn btn-danger" id="submitPostBtn">Posting</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Success Alert (Hidden Initially) -->
+  
   <div class="alert alert-success mt-3 d-flex align-items-center d-none" role="alert" id="successMessage">
     <i class="fas fa-check-circle me-2"></i>
     <div id="successText">Posting Anda telah berhasil dipublikasikan!</div>
     <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 
-  <!-- Poll Creation Modal -->
-  <div class="modal fade" id="pollModal" tabindex="-1" aria-labelledby="pollModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="pollModalLabel">Buat Polling</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="pollQuestion" class="form-label">Pertanyaan</label>
-            <input type="text" class="form-control" id="pollQuestion" placeholder="Masukkan pertanyaan polling Anda">
-          </div>
-          <div id="pollOptions">
-            <div class="mb-3">
-              <label class="form-label">Opsi 1</label>
-              <input type="text" class="form-control poll-option" placeholder="Opsi 1">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Opsi 2</label>
-              <input type="text" class="form-control poll-option" placeholder="Opsi 2">
-            </div>
-          </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary" id="addPollOptionBtn">
-            <i class="fas fa-plus"></i> Tambah Opsi
-          </button>
-          <div class="mb-3 mt-3">
-            <label for="pollDuration" class="form-label">Durasi</label>
-            <select class="form-select" id="pollDuration">
-              <option value="1">1 hari</option>
-              <option value="3" selected>3 hari</option>
-              <option value="7">1 minggu</option>
-              <option value="30">1 bulan</option>
-            </select>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="button" class="btn btn-primary" id="savePollBtn">Tambahkan Polling</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Emoji Picker Dropdown -->
-  <div class="dropdown-menu p-0 emoji-picker" id="emojiPicker" style="display: none; position: absolute; width: 320px;">
-    <div class="emoji-picker-header d-flex border-bottom p-2">
-      <input type="text" class="form-control form-control-sm" id="emojiSearch" placeholder="Cari emoji...">
-    </div>
-    <div class="emoji-categories d-flex overflow-auto border-bottom p-1">
-      <button class="btn btn-sm me-1 active" data-category="recent">🕒</button>
-      <button class="btn btn-sm me-1" data-category="smileys">😀</button>
-      <button class="btn btn-sm me-1" data-category="people">👨</button>
-      <button class="btn btn-sm me-1" data-category="animals">🐶</button>
-      <button class="btn btn-sm me-1" data-category="food">🍎</button>
-      <button class="btn btn-sm me-1" data-category="travel">🚗</button>
-      <button class="btn btn-sm me-1" data-category="activities">⚽</button>
-      <button class="btn btn-sm me-1" data-category="objects">💡</button>
-      <button class="btn btn-sm me-1" data-category="symbols">❤️</button>
-      <button class="btn btn-sm" data-category="flags">🏁</button>
-    </div>
-    <div class="emoji-list p-2" style="height: 200px; overflow-y: auto;">
-      <div class="row row-cols-8 g-1">
-        <div class="col"><button class="btn p-1 emoji-btn">😀</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😃</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😄</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😁</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😆</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😅</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤣</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😂</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🙂</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🙃</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😉</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😊</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😇</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🥰</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😍</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤩</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😘</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😗</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">☺️</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😚</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😙</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🥲</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😋</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😛</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😜</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤪</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😝</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤑</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤗</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤭</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤫</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤔</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤐</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤨</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😐</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😑</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😶</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😏</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😒</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🙄</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😬</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">🤥</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😌</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😔</button></div>
-        <div class="col"><button class="btn p-1 emoji-btn">😪</button></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Post Preview Modal -->
+  
   <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -256,20 +132,15 @@
               <h5 id="previewTitle" class="mb-2 d-none"></h5>
               <p id="previewContent" class="mb-3"></p>
 
-              <!-- Media preview -->
+              
               <div id="previewMedia" class="mb-3"></div>
 
-              <!-- Poll preview -->
-              <div id="previewPoll" class="card bg-light mb-3 d-none">
-                <div class="card-body"></div>
-              </div>
-
-              <!-- Tags preview -->
+              
               <div id="previewTags" class="mb-2"></div>
 
               <hr>
 
-              <!-- Action buttons -->
+              
               <div class="d-flex">
                 <button class="btn btn-sm btn-link text-muted me-3">
                   <i class="far fa-heart"></i> <span>0</span>
@@ -299,47 +170,246 @@
   </div>
 </div>
 
+<style>
+/* Media preview styles */
+#mediaPreviewArea {
+  min-height: 0;
+  transition: min-height 0.3s;
+}
+
+#mediaPreviewArea:not(:empty) {
+  min-height: 150px;
+}
+
+/* Drag and drop area */
+.border-dashed {
+  border-style: dashed !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+</style>
+
 <script>
 // Use an IIFE to prevent global namespace pollution
 (function() {
-  // Function to initialize the page
-  function initTambahPage() {
-    console.log("Tambah page initializing...");
+  // Global variables - accessible through window for debugging
+  window.mediaFiles = {
+    images: [],
+    videos: []
+  };
+  const MAX_FILES = 10;
+  
+  // Show preview function - exposed globally for onclick
+  window.showPreview = function() {
+    console.log("Showing preview");
     
-    // Global variables
-    window.mediaFiles = {
-      images: [],
-      videos: []
-    };
-    const MAX_FILES = 10;
+    // Get elements - with null checks
+    const title = document.getElementById('postTitle')?.value || '';
+    const content = document.getElementById('postContent')?.value || '';
+    const tags = document.getElementById('postTags')?.value || '';
     
-    // Initialize character counter - with null checks
-    const postContent = document.getElementById('postContent');
-    const charCount = document.getElementById('charCount');
+    const previewTitle = document.getElementById('previewTitle');
+    const previewContent = document.getElementById('previewContent');
+    const previewMedia = document.getElementById('previewMedia');
+    const previewTags = document.getElementById('previewTags');
     
-    if (postContent && charCount) {
-      postContent.addEventListener('input', function() {
-        charCount.textContent = this.value.length;
-      });
-      console.log("Character counter initialized");
-    } else {
-      console.error("Could not find postContent or charCount elements");
+    if (!previewContent) {
+      console.error("Preview elements not found");
+      return;
     }
     
-    // Initialize tooltips - with error handling
-    try {
-      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-      if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-        tooltipTriggerList.forEach(function(tooltipTriggerEl) {
-          new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-        console.log("Tooltips initialized");
+    // Title preview
+    if (previewTitle) {
+      if (title.trim()) {
+        previewTitle.textContent = title;
+        previewTitle.classList.remove('d-none');
       } else {
-        console.warn("Bootstrap tooltip not available");
+        previewTitle.classList.add('d-none');
+      }
+    }
+    
+    // Content preview
+    if (previewContent) {
+      previewContent.textContent = content;
+    }
+    
+    // Media preview
+    if (previewMedia) {
+      previewMedia.innerHTML = '';
+      
+      if (window.mediaFiles.images.length > 0 || window.mediaFiles.videos.length > 0) {
+        // Create a carousel if more than one media
+        if (window.mediaFiles.images.length + window.mediaFiles.videos.length > 1) {
+          const carousel = document.createElement('div');
+          carousel.id = 'previewCarousel';
+          carousel.className = 'carousel slide';
+          carousel.setAttribute('data-bs-ride', 'carousel');
+          
+          // Carousel indicators
+          const indicators = document.createElement('div');
+          indicators.className = 'carousel-indicators';
+          
+          // Carousel inner
+          const inner = document.createElement('div');
+          inner.className = 'carousel-inner';
+          
+          // Add all media items to carousel
+          let activeIndex = 0;
+          
+          // First add images
+          window.mediaFiles.images.forEach((image, index) => {
+            // Indicator
+            const indicator = document.createElement('button');
+            indicator.setAttribute('type', 'button');
+            indicator.setAttribute('data-bs-target', '#previewCarousel');
+            indicator.setAttribute('data-bs-slide-to', activeIndex.toString());
+            
+            if (activeIndex === 0) {
+              indicator.classList.add('active');
+            }
+            
+            indicators.appendChild(indicator);
+            
+            // Slide
+            const slide = document.createElement('div');
+            slide.className = `carousel-item ${activeIndex === 0 ? 'active' : ''}`;
+            
+            slide.innerHTML = `
+              <img src="${image.preview}" class="d-block w-100 rounded" style="max-height: 400px; object-fit: contain;">
+            `;
+            
+            inner.appendChild(slide);
+            activeIndex++;
+          });
+          
+          // Then add videos
+          window.mediaFiles.videos.forEach((video, index) => {
+            // Indicator
+            const indicator = document.createElement('button');
+            indicator.setAttribute('type', 'button');
+            indicator.setAttribute('data-bs-target', '#previewCarousel');
+            indicator.setAttribute('data-bs-slide-to', activeIndex.toString());
+            
+            if (activeIndex === 0) {
+              indicator.classList.add('active');
+            }
+            
+            indicators.appendChild(indicator);
+            
+            // Slide
+            const slide = document.createElement('div');
+            slide.className = `carousel-item ${activeIndex === 0 ? 'active' : ''}`;
+            
+            slide.innerHTML = `
+              <div class="bg-dark d-flex align-items-center justify-content-center rounded" style="height: 400px;">
+                <i class="fas fa-play text-white fa-3x"></i>
+              </div>
+            `;
+            
+            inner.appendChild(slide);
+            activeIndex++;
+          });
+          
+          // Add controls if more than one item
+          if (activeIndex > 1) {
+            const prevControl = document.createElement('button');
+            prevControl.className = 'carousel-control-prev';
+            prevControl.setAttribute('type', 'button');
+            prevControl.setAttribute('data-bs-target', '#previewCarousel');
+            prevControl.setAttribute('data-bs-slide', 'prev');
+            prevControl.innerHTML = `
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            `;
+            
+            const nextControl = document.createElement('button');
+            nextControl.className = 'carousel-control-next';
+            nextControl.setAttribute('type', 'button');
+            nextControl.setAttribute('data-bs-target', '#previewCarousel');
+            nextControl.setAttribute('data-bs-slide', 'next');
+            nextControl.innerHTML = `
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            `;
+            
+            carousel.appendChild(indicators);
+            carousel.appendChild(inner);
+            carousel.appendChild(prevControl);
+            carousel.appendChild(nextControl);
+            
+            previewMedia.appendChild(carousel);
+          } else {
+            // Single media item, no need for carousel
+            if (window.mediaFiles.images.length === 1) {
+              previewMedia.innerHTML = `
+                <img src="${window.mediaFiles.images[0].preview}" class="img-fluid rounded">
+              `;
+            } else if (window.mediaFiles.videos.length === 1) {
+              previewMedia.innerHTML = `
+                <div class="bg-dark d-flex align-items-center justify-content-center rounded" style="height: 300px;">
+                  <i class="fas fa-play text-white fa-3x"></i>
+                </div>
+              `;
+            }
+          }
+        } else {
+          // Single media item
+          if (window.mediaFiles.images.length === 1) {
+            previewMedia.innerHTML = `
+              <img src="${window.mediaFiles.images[0].preview}" class="img-fluid rounded">
+            `;
+          } else if (window.mediaFiles.videos.length === 1) {
+            previewMedia.innerHTML = `
+              <div class="bg-dark d-flex align-items-center justify-content-center rounded" style="height: 300px;">
+                <i class="fas fa-play text-white fa-3x"></i>
+              </div>
+            `;
+          }
+        }
+      }
+    }
+    
+    // Tags preview
+    if (previewTags) {
+      previewTags.innerHTML = '';
+      if (tags.trim()) {
+        const tagArray = tags.split(' ').filter(tag => tag.trim());
+        
+        tagArray.forEach(tag => {
+          const tagSpan = document.createElement('span');
+          tagSpan.className = 'badge bg-light text-primary me-1';
+          tagSpan.innerHTML = `
+            <i class="fas fa-hashtag small"></i> ${tag}
+          `;
+          
+          previewTags.appendChild(tagSpan);
+        });
+      }
+    }
+    
+    // Show modal
+    try {
+      if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+        const previewModal = document.getElementById('previewModal');
+        if (previewModal) {
+          const modal = new bootstrap.Modal(previewModal);
+          modal.show();
+        } else {
+          console.error("Preview modal not found");
+        }
+      } else {
+        console.error("Bootstrap Modal not available");
       }
     } catch (e) {
-      console.error("Error initializing tooltips:", e);
+      console.error("Error showing preview modal:", e);
     }
+  };
   
   // Helper function to update media stats
   function updateMediaStats() {
@@ -545,7 +615,12 @@
   
   // Helper function to process files (used by both drag-drop and file inputs)
   function processFiles(files, fileType) {
-    const totalCurrentFiles = mediaFiles.images.length + mediaFiles.videos.length;
+    if (!files || files.length === 0) {
+      console.warn("No files to process");
+      return;
+    }
+    
+    const totalCurrentFiles = window.mediaFiles.images.length + window.mediaFiles.videos.length;
     const remainingSlots = MAX_FILES - totalCurrentFiles;
     
     if (remainingSlots <= 0) {
@@ -555,18 +630,25 @@
     
     // Limit files to remaining slots
     const filesToProcess = Array.from(files).slice(0, remainingSlots);
+    console.log(`Processing ${filesToProcess.length} files of type ${fileType}`);
     
     filesToProcess.forEach(file => {
       if (fileType === 'image' && file.type.startsWith('image/')) {
-        const preview = URL.createObjectURL(file);
-        mediaFiles.images.push({
-          file: file,
-          preview: preview
-        });
+        try {
+          const preview = URL.createObjectURL(file);
+          window.mediaFiles.images.push({
+            file: file,
+            preview: preview
+          });
+          console.log(`Added image: ${file.name}`);
+        } catch (e) {
+          console.error("Error creating object URL for image:", e);
+        }
       } else if (fileType === 'video' && file.type.startsWith('video/')) {
-        mediaFiles.videos.push({
+        window.mediaFiles.videos.push({
           file: file
         });
+        console.log(`Added video: ${file.name}`);
       }
     });
     
@@ -574,731 +656,9 @@
     updateMediaStats();
   }
   
-  // Set up drag and drop
-  const dropArea = document.getElementById('dropArea');
-  
-  dropArea.addEventListener('dragover', function(e) {
-    e.preventDefault();
-    this.classList.add('bg-light');
-  });
-  
-  dropArea.addEventListener('dragleave', function() {
-    this.classList.remove('bg-light');
-  });
-  
-  dropArea.addEventListener('drop', function(e) {
-    e.preventDefault();
-    this.classList.remove('bg-light');
-    
-    const files = e.dataTransfer.files;
-    
-    // Process each file based on its type
-    Array.from(files).forEach(file => {
-      if (file.type.startsWith('image/')) {
-        processFiles([file], 'image');
-      } else if (file.type.startsWith('video/')) {
-        processFiles([file], 'video');
-      }
-    });
-  });
-  
-  // Image button
-  document.getElementById('uploadImageBtn').addEventListener('click', function() {
-    document.getElementById('imageInput').click();
-  });
-  
-  // Video button
-  document.getElementById('uploadVideoBtn').addEventListener('click', function() {
-    document.getElementById('videoInput').click();
-  });
-  
-  // Poll button
-  document.getElementById('addPollBtn').addEventListener('click', function() {
-    const pollModal = new bootstrap.Modal(document.getElementById('pollModal'));
-    pollModal.show();
-  });
-  
-  // Preview button
-  document.getElementById('previewBtn').addEventListener('click', function() {
-    // Populate preview modal
-    const title = document.getElementById('postTitle').value;
-    const content = document.getElementById('postContent').value;
-    const tags = document.getElementById('postTags').value;
-    
-    const previewTitle = document.getElementById('previewTitle');
-    const previewContent = document.getElementById('previewContent');
-    const previewMedia = document.getElementById('previewMedia');
-    const previewTags = document.getElementById('previewTags');
-    
-    // Title preview
-    if (title.trim()) {
-      previewTitle.textContent = title;
-      previewTitle.classList.remove('d-none');
-    } else {
-      previewTitle.classList.add('d-none');
-    }
-    
-    // Content preview
-    previewContent.textContent = content;
-    
-    // Media preview
-    previewMedia.innerHTML = '';
-    
-    if (mediaFiles.images.length > 0 || mediaFiles.videos.length > 0) {
-      // Create a carousel if more than one media
-      if (mediaFiles.images.length + mediaFiles.videos.length > 1) {
-        const carousel = document.createElement('div');
-        carousel.id = 'previewCarousel';
-        carousel.className = 'carousel slide';
-        carousel.setAttribute('data-bs-ride', 'carousel');
-        
-        // Carousel indicators
-        const indicators = document.createElement('div');
-        indicators.className = 'carousel-indicators';
-        
-        // Carousel inner
-        const inner = document.createElement('div');
-        inner.className = 'carousel-inner';
-        
-        // Add all media items to carousel
-        let activeIndex = 0;
-        
-        // First add images
-        mediaFiles.images.forEach((image, index) => {
-          // Indicator
-          const indicator = document.createElement('button');
-          indicator.setAttribute('type', 'button');
-          indicator.setAttribute('data-bs-target', '#previewCarousel');
-          indicator.setAttribute('data-bs-slide-to', activeIndex.toString());
-          
-          if (activeIndex === 0) {
-            indicator.classList.add('active');
-          }
-          
-          indicators.appendChild(indicator);
-          
-          // Slide
-          const slide = document.createElement('div');
-          slide.className = `carousel-item ${activeIndex === 0 ? 'active' : ''}`;
-          
-          slide.innerHTML = `
-            <img src="${image.preview}" class="d-block w-100 rounded" style="max-height: 400px; object-fit: contain;">
-          `;
-          
-          inner.appendChild(slide);
-          activeIndex++;
-        });
-        
-        // Then add videos
-        mediaFiles.videos.forEach((video, index) => {
-          // Indicator
-          const indicator = document.createElement('button');
-          indicator.setAttribute('type', 'button');
-          indicator.setAttribute('data-bs-target', '#previewCarousel');
-          indicator.setAttribute('data-bs-slide-to', activeIndex.toString());
-          
-          if (activeIndex === 0) {
-            indicator.classList.add('active');
-          }
-          
-          indicators.appendChild(indicator);
-          
-          // Slide
-          const slide = document.createElement('div');
-          slide.className = `carousel-item ${activeIndex === 0 ? 'active' : ''}`;
-          
-          slide.innerHTML = `
-            <div class="bg-dark d-flex align-items-center justify-content-center rounded" style="height: 400px;">
-              <i class="fas fa-play text-white fa-3x"></i>
-            </div>
-          `;
-          
-          inner.appendChild(slide);
-          activeIndex++;
-        });
-        
-        // Add controls if more than one item
-        if (activeIndex > 1) {
-          const prevControl = document.createElement('button');
-          prevControl.className = 'carousel-control-prev';
-          prevControl.setAttribute('type', 'button');
-          prevControl.setAttribute('data-bs-target', '#previewCarousel');
-          prevControl.setAttribute('data-bs-slide', 'prev');
-          prevControl.innerHTML = `
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          `;
-          
-          const nextControl = document.createElement('button');
-          nextControl.className = 'carousel-control-next';
-          nextControl.setAttribute('type', 'button');
-          nextControl.setAttribute('data-bs-target', '#previewCarousel');
-          nextControl.setAttribute('data-bs-slide', 'next');
-          nextControl.innerHTML = `
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          `;
-          
-          carousel.appendChild(indicators);
-          carousel.appendChild(inner);
-          carousel.appendChild(prevControl);
-          carousel.appendChild(nextControl);
-          
-          previewMedia.appendChild(carousel);
-        } else {
-          // Single media item, no need for carousel
-          if (mediaFiles.images.length === 1) {
-            previewMedia.innerHTML = `
-              <img src="${mediaFiles.images[0].preview}" class="img-fluid rounded">
-            `;
-          } else if (mediaFiles.videos.length === 1) {
-            previewMedia.innerHTML = `
-              <div class="bg-dark d-flex align-items-center justify-content-center rounded" style="height: 300px;">
-                <i class="fas fa-play text-white fa-3x"></i>
-              </div>
-            `;
-          }
-        }
-      } else {
-        // Single media item
-        if (mediaFiles.images.length === 1) {
-          previewMedia.innerHTML = `
-            <img src="${mediaFiles.images[0].preview}" class="img-fluid rounded">
-          `;
-        } else if (mediaFiles.videos.length === 1) {
-          previewMedia.innerHTML = `
-            <div class="bg-dark d-flex align-items-center justify-content-center rounded" style="height: 300px;">
-              <i class="fas fa-play text-white fa-3x"></i>
-            </div>
-          `;
-        }
-      }
-    }
-    
-    // Tags preview
-    previewTags.innerHTML = '';
-    if (tags.trim()) {
-      const tagArray = tags.split(' ').filter(tag => tag.trim());
-      
-      tagArray.forEach(tag => {
-        const tagSpan = document.createElement('span');
-        tagSpan.className = 'badge bg-light text-primary me-1';
-        tagSpan.innerHTML = `
-          <i class="fas fa-hashtag small"></i> ${tag}
-        `;
-        
-        previewTags.appendChild(tagSpan);
-      });
-    }
-    
-    // Show modal
-    const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
-    previewModal.show();
-  });
-  
-  // Image input change
-  document.getElementById('imageInput').addEventListener('change', function() {
-    if (this.files.length > 0) {
-      processFiles(this.files, 'image');
-    }
-  });
-  
-  // Video input change
-  document.getElementById('videoInput').addEventListener('change', function() {
-    if (this.files.length > 0) {
-      processFiles(this.files, 'video');
-    }
-  });
-  
-  // Emoji button
-  document.getElementById('addEmojiBtn').addEventListener('click', function(e) {
-    e.stopPropagation();
-    const emojiPicker = document.getElementById('emojiPicker');
-    const rect = this.getBoundingClientRect();
-    
-    if (emojiPicker.style.display === 'none' || !emojiPicker.style.display) {
-      emojiPicker.style.display = 'block';
-      emojiPicker.style.position = 'absolute';
-      emojiPicker.style.top = (rect.bottom + window.scrollY + 5) + 'px';
-      emojiPicker.style.left = rect.left + 'px';
-      emojiPicker.style.zIndex = '9999';
-    } else {
-      emojiPicker.style.display = 'none';
-    }
-  });
-  
-  // Set up emoji buttons
-  document.querySelectorAll('.emoji-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      
-      // Insert emoji at cursor
-      const textarea = document.getElementById('postContent');
-      const emoji = this.textContent;
-      
-      if (textarea.selectionStart || textarea.selectionStart === 0) {
-        const startPos = textarea.selectionStart;
-        const endPos = textarea.selectionEnd;
-        textarea.value = textarea.value.substring(0, startPos) + 
-                        emoji + 
-                        textarea.value.substring(endPos);
-        textarea.selectionStart = startPos + emoji.length;
-        textarea.selectionEnd = startPos + emoji.length;
-        textarea.focus();
-        
-        // Update character count
-        document.getElementById('charCount').textContent = textarea.value.length;
-      } else {
-        textarea.value += emoji;
-      }
-      
-      // Hide emoji picker
-      document.getElementById('emojiPicker').style.display = 'none';
-    });
-  });
-  
-  // Close emoji picker when clicking outside
-  document.addEventListener('click', function(e) {
-    const picker = document.getElementById('emojiPicker');
-    const emojiBtn = document.getElementById('addEmojiBtn');
-    
-    if (picker && picker.style.display === 'block' && 
-        !picker.contains(e.target) && e.target !== emojiBtn) {
-      picker.style.display = 'none';
-    }
-  });
-  
-  // Location button
-  document.getElementById('locationBtn').addEventListener('click', function() {
-    if (navigator.geolocation) {
-      // Show loading state
-      this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-      this.disabled = true;
-      
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          // Success - location obtained
-          this.innerHTML = '<i class="fas fa-map-marker-alt"></i>';
-          this.disabled = false;
-          this.classList.add('btn-primary');
-          this.classList.remove('btn-outline-primary');
-          alert('Lokasi berhasil ditambahkan!');
-        },
-        (error) => {
-          // Error getting location
-          this.innerHTML = '<i class="fas fa-map-marker-alt"></i>';
-          this.disabled = false;
-          alert('Tidak dapat mendapatkan lokasi Anda: ' + error.message);
-        }
-      );
-    } else {
-      alert('Geolokasi tidak didukung oleh browser Anda');
-    }
-  });
-  
-  // Save poll button
-  document.getElementById('savePollBtn').addEventListener('click', function() {
-    const question = document.getElementById('pollQuestion').value.trim();
-    const options = [];
-    
-    document.querySelectorAll('.poll-option').forEach(function(input) {
-      if (input.value.trim()) {
-        options.push(input.value.trim());
-      }
-    });
-    
-    if (!question) {
-      alert('Silakan masukkan pertanyaan polling');
-      return;
-    }
-    
-    if (options.length < 2) {
-      alert('Silakan tambahkan minimal 2 opsi');
-      return;
-    }
-    
-    const duration = document.getElementById('pollDuration').value;
-    
-    // Create poll preview
-    const pollArea = document.getElementById('pollPreviewArea');
-    pollArea.innerHTML = `
-      <div class="card bg-light">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <div class="fw-bold">${question}</div>
-            <button type="button" class="btn-close" id="removePoll"></button>
-          </div>
-          <div class="small text-muted mb-2">
-            ${options.length} opsi · Durasi: ${duration} hari
-          </div>
-          
-          <div class="poll-options">
-            ${options.map((option, index) => `
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="radio" name="pollOptions" id="pollOption${index}" ${index === 0 ? 'checked' : ''}>
-                <label class="form-check-label" for="pollOption${index}">
-                  ${option}
-                </label>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-    
-    // Set up remove poll button
-    document.getElementById('removePoll').addEventListener('click', function() {
-      pollArea.innerHTML = '';
-      document.getElementById('addPollBtn').classList.remove('btn-primary');
-      document.getElementById('addPollBtn').classList.add('btn-outline-primary');
-    });
-    
-    // Highlight poll button
-    document.getElementById('addPollBtn').classList.add('btn-primary');
-    document.getElementById('addPollBtn').classList.remove('btn-outline-primary');
-    
-    // Hide modal
-    bootstrap.Modal.getInstance(document.getElementById('pollModal')).hide();
-  });
-  
-  // Add poll option button
-  document.getElementById('addPollOptionBtn').addEventListener('click', function() {
-    const pollOptions = document.getElementById('pollOptions');
-    const optionCount = pollOptions.children.length + 1;
-    
-    const optionDiv = document.createElement('div');
-    optionDiv.className = 'mb-3';
-    optionDiv.innerHTML = `
-      <div class="d-flex">
-        <div class="flex-grow-1">
-          <label class="form-label">Opsi ${optionCount}</label>
-          <input type="text" class="form-control poll-option" placeholder="Opsi ${optionCount}">
-        </div>
-        <button type="button" class="btn btn-link text-danger remove-option">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-    `;
-    
-    pollOptions.appendChild(optionDiv);
-    
-    // Set up remove button
-    optionDiv.querySelector('.remove-option').addEventListener('click', function() {
-      pollOptions.removeChild(optionDiv);
-    });
-  });
-  
-  // Form submission
-  document.getElementById('createPostForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Basic validation
-    const content = document.getElementById('postContent').value.trim();
-    
-    if (!content) {
-      alert('Silakan masukkan konten posting');
-      return;
-    }
-    
-    // Simulate posting process
-    const submitBtn = document.getElementById('submitPostBtn');
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Memposting...';
-    
-    // Simulate API call
-    setTimeout(function() {
-      // Reset form
-      document.getElementById('createPostForm').reset();
-      mediaFiles.images = [];
-      mediaFiles.videos = [];
-      renderMediaPreviews();
-      updateMediaStats();
-      
-      // Reset buttons
-      document.getElementById('uploadImageBtn').classList.remove('btn-primary');
-      document.getElementById('uploadImageBtn').classList.add('btn-outline-primary');
-      document.getElementById('uploadVideoBtn').classList.remove('btn-primary');
-      document.getElementById('uploadVideoBtn').classList.add('btn-outline-primary');
-      document.getElementById('addPollBtn').classList.remove('btn-primary');
-      document.getElementById('addPollBtn').classList.add('btn-outline-primary');
-      document.getElementById('locationBtn').classList.remove('btn-primary');
-      document.getElementById('locationBtn').classList.add('btn-outline-primary');
-      
-      // Clear poll area
-      document.getElementById('pollPreviewArea').innerHTML = '';
-      
-      // Show success message
-      document.getElementById('successMessage').classList.remove('d-none');
-      
-      // Reset button state
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = 'Posting';
-      
-      // Hide success message after a while
-      setTimeout(function() {
-        document.getElementById('successMessage').classList.add('d-none');
-      }, 5000);
-      
-      // After successful posting, optionally redirect to home page
-      // loadPage('home');
-    }, 1500);
-  });
-  
-  // Post after preview button
-  document.getElementById('postAfterPreviewBtn').addEventListener('click', function() {
-    // Hide preview modal
-    bootstrap.Modal.getInstance(document.getElementById('previewModal')).hide();
-    
-    // Submit form
-    document.getElementById('submitPostBtn').click();
-  });
-  // Helper function to insert text at cursor position
-  function insertTextAtCursor(textarea, text) {
-    if (!textarea) return;
-    
-    if (textarea.selectionStart || textarea.selectionStart === 0) {
-      const startPos = textarea.selectionStart;
-      const endPos = textarea.selectionEnd;
-      textarea.value = textarea.value.substring(0, startPos) + 
-                      text + 
-                      textarea.value.substring(endPos);
-      textarea.selectionStart = startPos + text.length;
-      textarea.selectionEnd = startPos + text.length;
-      textarea.focus();
-    } else {
-      textarea.value += text;
-    }
-  }
-  
-  // Show emoji picker function for onclick fallback
-  function showEmojiPicker(btn) {
-    if (!btn) return;
-    
-    const emojiPicker = document.getElementById('emojiPicker');
-    if (!emojiPicker) return;
-    
-    const rect = btn.getBoundingClientRect();
-    
-    if (emojiPicker.style.display === 'none' || !emojiPicker.style.display) {
-      emojiPicker.style.display = 'block';
-      emojiPicker.style.position = 'absolute';
-      emojiPicker.style.top = (rect.bottom + window.scrollY + 5) + 'px';
-      emojiPicker.style.left = rect.left + 'px';
-      emojiPicker.style.zIndex = '9999';
-    } else {
-      emojiPicker.style.display = 'none';
-    }
-  }
-  
-  // Show preview function
-  function showPreview() {
-    console.log("Showing preview");
-    
-    // Get elements - with null checks
-    const title = document.getElementById('postTitle')?.value || '';
-    const content = document.getElementById('postContent')?.value || '';
-    const tags = document.getElementById('postTags')?.value || '';
-    
-    const previewTitle = document.getElementById('previewTitle');
-    const previewContent = document.getElementById('previewContent');
-    const previewMedia = document.getElementById('previewMedia');
-    const previewTags = document.getElementById('previewTags');
-    
-    if (!previewContent) {
-      console.error("Preview elements not found");
-      return;
-    }
-    
-    // Title preview
-    if (previewTitle) {
-      if (title.trim()) {
-        previewTitle.textContent = title;
-        previewTitle.classList.remove('d-none');
-      } else {
-        previewTitle.classList.add('d-none');
-      }
-    }
-    
-    // Content preview
-    if (previewContent) {
-      previewContent.textContent = content;
-    }
-    
-    // Media preview
-    if (previewMedia) {
-      previewMedia.innerHTML = '';
-      
-      if (window.mediaFiles.images.length > 0 || window.mediaFiles.videos.length > 0) {
-        // Create a carousel if more than one media
-        if (window.mediaFiles.images.length + window.mediaFiles.videos.length > 1) {
-          const carousel = document.createElement('div');
-          carousel.id = 'previewCarousel';
-          carousel.className = 'carousel slide';
-          carousel.setAttribute('data-bs-ride', 'carousel');
-          
-          // Carousel indicators
-          const indicators = document.createElement('div');
-          indicators.className = 'carousel-indicators';
-          
-          // Carousel inner
-          const inner = document.createElement('div');
-          inner.className = 'carousel-inner';
-          
-          // Add all media items to carousel
-          let activeIndex = 0;
-          
-          // First add images
-          window.mediaFiles.images.forEach((image, index) => {
-            // Indicator
-            const indicator = document.createElement('button');
-            indicator.setAttribute('type', 'button');
-            indicator.setAttribute('data-bs-target', '#previewCarousel');
-            indicator.setAttribute('data-bs-slide-to', activeIndex.toString());
-            
-            if (activeIndex === 0) {
-              indicator.classList.add('active');
-            }
-            
-            indicators.appendChild(indicator);
-            
-            // Slide
-            const slide = document.createElement('div');
-            slide.className = `carousel-item ${activeIndex === 0 ? 'active' : ''}`;
-            
-            slide.innerHTML = `
-              <img src="${image.preview}" class="d-block w-100 rounded" style="max-height: 400px; object-fit: contain;">
-            `;
-            
-            inner.appendChild(slide);
-            activeIndex++;
-          });
-          
-          // Then add videos
-          window.mediaFiles.videos.forEach((video, index) => {
-            // Indicator
-            const indicator = document.createElement('button');
-            indicator.setAttribute('type', 'button');
-            indicator.setAttribute('data-bs-target', '#previewCarousel');
-            indicator.setAttribute('data-bs-slide-to', activeIndex.toString());
-            
-            if (activeIndex === 0) {
-              indicator.classList.add('active');
-            }
-            
-            indicators.appendChild(indicator);
-            
-            // Slide
-            const slide = document.createElement('div');
-            slide.className = `carousel-item ${activeIndex === 0 ? 'active' : ''}`;
-            
-            slide.innerHTML = `
-              <div class="bg-dark d-flex align-items-center justify-content-center rounded" style="height: 400px;">
-                <i class="fas fa-play text-white fa-3x"></i>
-              </div>
-            `;
-            
-            inner.appendChild(slide);
-            activeIndex++;
-          });
-          
-          // Add controls if more than one item
-          if (activeIndex > 1) {
-            const prevControl = document.createElement('button');
-            prevControl.className = 'carousel-control-prev';
-            prevControl.setAttribute('type', 'button');
-            prevControl.setAttribute('data-bs-target', '#previewCarousel');
-            prevControl.setAttribute('data-bs-slide', 'prev');
-            prevControl.innerHTML = `
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            `;
-            
-            const nextControl = document.createElement('button');
-            nextControl.className = 'carousel-control-next';
-            nextControl.setAttribute('type', 'button');
-            nextControl.setAttribute('data-bs-target', '#previewCarousel');
-            nextControl.setAttribute('data-bs-slide', 'next');
-            nextControl.innerHTML = `
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            `;
-            
-            carousel.appendChild(indicators);
-            carousel.appendChild(inner);
-            carousel.appendChild(prevControl);
-            carousel.appendChild(nextControl);
-            
-            previewMedia.appendChild(carousel);
-          } else {
-            // Single media item, no need for carousel
-            if (window.mediaFiles.images.length === 1) {
-              previewMedia.innerHTML = `
-                <img src="${window.mediaFiles.images[0].preview}" class="img-fluid rounded">
-              `;
-            } else if (window.mediaFiles.videos.length === 1) {
-              previewMedia.innerHTML = `
-                <div class="bg-dark d-flex align-items-center justify-content-center rounded" style="height: 300px;">
-                  <i class="fas fa-play text-white fa-3x"></i>
-                </div>
-              `;
-            }
-          }
-        } else {
-          // Single media item
-          if (window.mediaFiles.images.length === 1) {
-            previewMedia.innerHTML = `
-              <img src="${window.mediaFiles.images[0].preview}" class="img-fluid rounded">
-            `;
-          } else if (window.mediaFiles.videos.length === 1) {
-            previewMedia.innerHTML = `
-              <div class="bg-dark d-flex align-items-center justify-content-center rounded" style="height: 300px;">
-                <i class="fas fa-play text-white fa-3x"></i>
-              </div>
-            `;
-          }
-        }
-      }
-    }
-    
-    // Tags preview
-    if (previewTags) {
-      previewTags.innerHTML = '';
-      if (tags.trim()) {
-        const tagArray = tags.split(' ').filter(tag => tag.trim());
-        
-        tagArray.forEach(tag => {
-          const tagSpan = document.createElement('span');
-          tagSpan.className = 'badge bg-light text-primary me-1';
-          tagSpan.innerHTML = `
-            <i class="fas fa-hashtag small"></i> ${tag}
-          `;
-          
-          previewTags.appendChild(tagSpan);
-        });
-      }
-    }
-    
-    // Show modal
-    try {
-      if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
-        const previewModal = document.getElementById('previewModal');
-        if (previewModal) {
-          const modal = new bootstrap.Modal(previewModal);
-          modal.show();
-        } else {
-          console.error("Preview modal not found");
-        }
-      } else {
-        console.error("Bootstrap Modal not available");
-      }
-    } catch (e) {
-      console.error("Error showing preview modal:", e);
-    }
-  }
-  
-  // Initialize everything when page loads
-  function init() {
-    console.log("Initializing tambah.html page...");
+  // Initialize the page
+  function initTambahPage() {
+    console.log("Tambah page initializing...");
     
     // Make sure dropArea is visible
     const dropArea = document.getElementById('dropArea');
@@ -1306,66 +666,198 @@
       dropArea.classList.remove('d-none');
     }
     
-    // Setup all event listeners
-    initTambahPage();
-    setupFormListeners();
+    // Initialize character counter - with null checks
+    const postContent = document.getElementById('postContent');
+    const charCount = document.getElementById('charCount');
+    
+    if (postContent && charCount) {
+      postContent.addEventListener('input', function() {
+        charCount.textContent = this.value.length;
+      });
+      console.log("Character counter initialized");
+    } else {
+      console.error("Could not find postContent or charCount elements");
+    }
+    
+    // Initialize tooltips - with error handling
+    try {
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+        tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+          new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        console.log("Tooltips initialized");
+      } else {
+        console.warn("Bootstrap tooltip not available");
+      }
+    } catch (e) {
+      console.error("Error initializing tooltips:", e);
+    }
+    
+    // Set up drag and drop
+    if (dropArea) {
+      dropArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.classList.add('bg-light');
+      });
+      
+      dropArea.addEventListener('dragleave', function() {
+        this.classList.remove('bg-light');
+      });
+      
+      dropArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.classList.remove('bg-light');
+        
+        const files = e.dataTransfer.files;
+        console.log(`Files dropped: ${files.length}`);
+        
+        // Process each file based on its type
+        Array.from(files).forEach(file => {
+          if (file.type.startsWith('image/')) {
+            processFiles([file], 'image');
+          } else if (file.type.startsWith('video/')) {
+            processFiles([file], 'video');
+          }
+        });
+      });
+      
+      console.log("Drag and drop initialized");
+    } else {
+      console.error("Drop area not found");
+    }
+    
+    // Image input change
+    const imageInput = document.getElementById('imageInput');
+    if (imageInput) {
+      imageInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+          console.log(`${this.files.length} images selected`);
+          processFiles(this.files, 'image');
+        }
+      });
+      console.log("Image input initialized");
+    }
+    
+    // Video input change
+    const videoInput = document.getElementById('videoInput');
+    if (videoInput) {
+      videoInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+          console.log(`${this.files.length} videos selected`);
+          processFiles(this.files, 'video');
+        }
+      });
+      console.log("Video input initialized");
+    }
+    
+    // Form submission
+    const createPostForm = document.getElementById('createPostForm');
+    if (createPostForm) {
+      createPostForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log("Form submission triggered");
+        
+        // Basic validation
+        const content = document.getElementById('postContent')?.value.trim();
+        
+        if (!content) {
+          alert('Silakan masukkan konten posting');
+          return;
+        }
+        
+        // Simulate posting process
+        const submitBtn = document.getElementById('submitPostBtn');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Memposting...';
+          
+          // Simulate API call
+          setTimeout(function() {
+            // Reset form
+            createPostForm.reset();
+            window.mediaFiles.images = [];
+            window.mediaFiles.videos = [];
+            renderMediaPreviews();
+            updateMediaStats();
+            
+            // Reset buttons
+            document.querySelectorAll('#uploadImageBtn, #uploadVideoBtn').forEach(btn => {
+              btn.classList.remove('btn-primary');
+              btn.classList.add('btn-outline-primary');
+            });
+            
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+              successMessage.classList.remove('d-none');
+              
+              // Hide success message after a while
+              setTimeout(function() {
+                successMessage.classList.add('d-none');
+              }, 5000);
+            }
+            
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Posting';
+            
+            console.log("Post submitted successfully");
+          }, 1500);
+        }
+      });
+      
+      console.log("Form submission handler initialized");
+    } else {
+      console.error("Create post form not found");
+    }
+    
+    // Post after preview button
+    const postAfterPreviewBtn = document.getElementById('postAfterPreviewBtn');
+    if (postAfterPreviewBtn) {
+      postAfterPreviewBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log("Post after preview button clicked");
+        
+        // Hide preview modal
+        try {
+          const previewModal = document.getElementById('previewModal');
+          if (previewModal) {
+            const modal = bootstrap.Modal.getInstance(previewModal);
+            if (modal) {
+              modal.hide();
+            } else {
+              console.warn("Modal instance not found, trying DOM hide");
+              previewModal.classList.remove('show');
+              previewModal.style.display = 'none';
+              document.body.classList.remove('modal-open');
+              const backdrop = document.querySelector('.modal-backdrop');
+              if (backdrop) backdrop.remove();
+            }
+          }
+        } catch (e) {
+          console.error("Error hiding preview modal:", e);
+        }
+        
+        // Submit form
+        const submitBtn = document.getElementById('submitPostBtn');
+        if (submitBtn) submitBtn.click();
+      });
+      
+      console.log("Post after preview button initialized");
+    } else {
+      console.error("Post after preview button not found");
+    }
     
     console.log("Tambah page initialization complete");
   }
   
   // Call init on DOMContentLoaded if not already loaded
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', initTambahPage);
   } else {
     // DOM already loaded, call init directly
-    init();
+    initTambahPage();
   }
-})(); // End of IIFE
+})();
 </script>
-
-<style>
-/* Custom styles for tambah.html */
-.emoji-btn {
-  cursor: pointer;
-  font-size: 1.1em;
-  padding: 2px;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  transition: background-color 0.2s;
-}
-
-.emoji-btn:hover {
-  background-color: #f0f0f0;
-  border-radius: 4px;
-}
-
-.emoji-picker {
-  background-color: white;
-  border-radius: 0.375rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-/* Drag and drop area */
-.border-dashed {
-  border-style: dashed !important;
-}
-
-/* Media preview styles */
-#mediaPreviewArea {
-  min-height: 0;
-  transition: min-height 0.3s;
-}
-
-#mediaPreviewArea:not(:empty) {
-  min-height: 150px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .col-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
-</style>

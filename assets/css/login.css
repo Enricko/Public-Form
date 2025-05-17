@@ -1,4 +1,4 @@
-/* Login Modal Styles */
+
 .modal .modal-dialog {
   max-width: 450px;
   margin: 1.75rem auto;
@@ -69,7 +69,7 @@
   }
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 576px) {
   .modal .modal-dialog {
     margin: 1rem;
@@ -85,7 +85,7 @@
   }
 }
 
-/* Make sure the modal backdrop doesn't interfere with clicking */
+
 .modal-backdrop {
   z-index: 1040;
 }
@@ -94,7 +94,7 @@
   z-index: 1050;
 }
 
-/* Fix for buttons not clickable */
+
 .btn {
   position: relative;
   z-index: 1;

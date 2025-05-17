@@ -1,4 +1,4 @@
-/* Create Post Styles */
+
 
 .create-post-container {
   background-color: #fff;
@@ -28,7 +28,7 @@
   position: relative;
 }
 
-/* User info section */
+
 .user-info {
   display: flex;
   align-items: center;
@@ -58,7 +58,7 @@
   font-size: 15px;
 }
 
-/* Post form fields */
+
 .title-container {
   margin-bottom: 15px;
 }
@@ -98,7 +98,7 @@
   color: #657786;
 }
 
-/* Media preview area */
+
 .media-preview-area {
   display: flex;
   flex-wrap: wrap;
@@ -167,7 +167,7 @@
   cursor: pointer;
 }
 
-/* Poll preview */
+
 .poll-preview {
   width: 100%;
   background-color: #f7f9fa;
@@ -213,7 +213,7 @@
   color: #657786;
 }
 
-/* Formatting toolbar */
+
 .formatting-toolbar {
   display: flex;
   justify-content: space-between;
@@ -256,7 +256,7 @@
   width: 150px;
 }
 
-/* Tags input */
+
 .tags-container {
   margin-bottom: 20px;
 }
@@ -304,7 +304,7 @@
   gap: 10px;
 }
 
-/* Emoji picker */
+
 .emoji-picker-container {
   position: absolute;
   z-index: 1000;
@@ -370,7 +370,7 @@
   background-color: #f7f9fa;
 }
 
-/* Post Preview in Modal */
+
 .post-preview {
   padding: 15px;
   border: 1px solid #e1e8ed;
@@ -419,7 +419,7 @@
   color: #657786;
 }
 
-/* Success message */
+
 .alert-success {
   background-color: #d4edda;
   color: #155724;
@@ -435,7 +435,7 @@
   font-size: 20px;
 }
 
-/* Location toast */
+
 .location-toast {
   position: absolute;
   bottom: 20px;
@@ -454,7 +454,7 @@
   color: #1da1f2;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 576px) {
 
 
