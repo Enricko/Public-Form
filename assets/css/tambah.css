@@ -287,12 +287,6 @@
   box-shadow: none;
 }
 
-/* Post actions */
-.post-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .scheduled-info {
   display: flex;
@@ -462,10 +456,7 @@
 
 /* Responsive adjustments */
 @media (max-width: 576px) {
-  .post-actions {
-    flex-direction: column;
-    gap: 10px;
-  }
+
 
   .action-buttons {
     width: 100%;
